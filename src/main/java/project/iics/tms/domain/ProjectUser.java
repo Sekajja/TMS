@@ -6,15 +6,30 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Transient;
+import javax.transaction.Transactional;
 
 
 
 @Entity
-@NamedQuery(
-name = "findUserByUserName",
-query = "from ProjectUser where user_name like :user_name")
+@NamedQueries({
+	@NamedQuery(
+			name = "findUserByUserName",
+			query = "from ProjectUser where user_name like :user_name"
+					),
+	@NamedQuery(
+			name = "findRegisteredUser",
+			query = "from ProjectUser where user_name like :user_name AND password like :password"
+					)
+})
+
+/*
+ * name = "findUserByPassword",
+query = "from ProjectUser where password like :password"
+ * 
+ * */
 public class ProjectUser {
 	
 		/**
@@ -28,6 +43,7 @@ public class ProjectUser {
 		private String Last_Name;
 		private String User_Name;
 		private String Password;
+		private String Confirmpassword;
 		private String Gender;
 		private String DOB;
 		
@@ -99,7 +115,15 @@ public class ProjectUser {
 		public void setPassword(String password) {
 			Password = password;
 		}
+				
 		
+		@Column(name = "confirm_password")
+		public String getConfirmpassword() {
+			return Confirmpassword;
+		}
+		public void setConfirmpassword(String confirmpassword) {
+			Confirmpassword = confirmpassword;
+		}
 		
 		@Column(name = "gender")
 		public String getGender() {
@@ -118,6 +142,7 @@ public class ProjectUser {
 			return fullName;
 		}
 		
+				
 		public String toString() {
 			return "[ProjectUser: id=" + id
 			+ ", firstName=" + First_Name

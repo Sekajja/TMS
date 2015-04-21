@@ -13,6 +13,10 @@ public interface ProjectUserService{
 	
 	public List<ProjectUser> getProjectUserByUserName(String username);
 	
+	public boolean isRegisteredProjectUser(String username,String password);
+	
+	public ProjectUser getRegisteredUserByLogin(String username,String password);
+	
 	public ProjectUser getProjectUser(Long i);
 	
 	public void updateProjectUser(ProjectUser projectUser);

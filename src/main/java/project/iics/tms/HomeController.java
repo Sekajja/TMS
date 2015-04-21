@@ -30,23 +30,12 @@ public class HomeController {
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
-		playlist.add("La La Latch");
-		playlist.add("Shower");
-		playlist.add("Stay with me");
-		playlist.add("Rude");
-		playlist.add("Rather Be");
-		
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		String formattedDate = dateFormat.format(date);		
+		logger.info("Task Management System Accesed on {}", formattedDate);
 		
-		String formattedDate = dateFormat.format(date);
-		
-		
-		model.addAttribute("serverTime", formattedDate );
-		
-		model.addAttribute("playlist", playlist );
-		
-		return "home";
+		return "redirect:login";
 	}
 	
 }
