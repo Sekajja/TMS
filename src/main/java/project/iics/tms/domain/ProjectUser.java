@@ -1,15 +1,19 @@
 package project.iics.tms.domain;
 
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Transient;
-import javax.transaction.Transactional;
 
 
 
@@ -22,14 +26,11 @@ import javax.transaction.Transactional;
 	@NamedQuery(
 			name = "findRegisteredUser",
 			query = "from ProjectUser where user_name like :user_name AND password like :password"
-					)
+
+			)
 })
 
-/*
- * name = "findUserByPassword",
-query = "from ProjectUser where password like :password"
- * 
- * */
+
 public class ProjectUser {
 	
 		/**
@@ -44,9 +45,8 @@ public class ProjectUser {
 		private String User_Name;
 		private String Password;
 		private String Confirmpassword;
-		private String Gender;
 		private String DOB;
-		
+		private Set<UserRole> userRoles = new HashSet<UserRole>(0);
 		
 		@Id
 		@GeneratedValue(strategy = GenerationType.AUTO)
@@ -98,7 +98,8 @@ public class ProjectUser {
 		
 		
 		
-		@Column(name = "user_name")
+		@Column(name = "user_name", unique = true, 
+				nullable = false, length = 45)
 		public String getUser_Name() {
 			return User_Name;
 		}
@@ -108,7 +109,7 @@ public class ProjectUser {
 		
 		
 		
-		@Column(name = "password")
+		@Column(name = "password",nullable = false, length = 60)
 		public String getPassword() {
 			return Password;
 		}
@@ -125,12 +126,18 @@ public class ProjectUser {
 			Confirmpassword = confirmpassword;
 		}
 		
-		@Column(name = "gender")
-		public String getGender() {
-			return Gender;
+
+		@ManyToMany(cascade = CascadeType.ALL)
+		public Set<UserRole> getUserRoles() {
+			return userRoles;
 		}
-		public void setGender(String gender) {
-			Gender = gender;
+		public void setUserRoles(Set<UserRole> userRoles) {
+			this.userRoles = userRoles;
+		}
+		public void setUserRole(UserRole userRole) {
+			if(!userRoles.contains(userRole)){				
+				userRoles.add(userRole);
+			}
 		}
 		
 		@Transient
@@ -150,7 +157,6 @@ public class ProjectUser {
 			+ ", lastName=" + Last_Name
 			+ ", userName=" + User_Name
 			+ ", password=" + Password
-			+ ", gender=" + Gender
 			+ ", date of birth=" + DOB
 			+ "]";
 		}

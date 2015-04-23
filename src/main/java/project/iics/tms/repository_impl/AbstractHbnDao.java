@@ -1,19 +1,21 @@
 package project.iics.tms.repository_impl;
 
-import project.iics.tms.repository.Dao;
-
 import java.io.Serializable;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.util.Date;
 import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ReflectionUtils;
 
+import project.iics.tms.repository.Dao;
+
 public abstract class AbstractHbnDao <T extends Object> implements Dao<T> {
 	
+	//@Autowired private PasswordEncoder passwordEncoder;
 	@Autowired
 	private SessionFactory sessionFactory;
 	private Class<T> domainClass;
@@ -52,6 +54,9 @@ public abstract class AbstractHbnDao <T extends Object> implements Dao<T> {
 		}
 		getSession().save(t);
 		}
+	
+	
+	
 	
 	@SuppressWarnings("unchecked")
 	public T get(Serializable id) {

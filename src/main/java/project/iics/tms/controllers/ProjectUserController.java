@@ -124,6 +124,7 @@ ProjectUserService projectUserService;
 		projectUserService.createNewProjectUser(projectUser);
 		projectUserName = projectUser.getFullName();
 	
+	
 			return "redirect:welcome";
 	}
 	

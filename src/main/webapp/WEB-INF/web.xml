@@ -25,6 +25,21 @@
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 		
+	
+
+	<!-- New Security Additions i think servlet mapping has to go-->
+			<!-- 	<filter>   -->
+			<!-- 	    <filter-name>springSecurityFilterChain</filter-name> -->
+			<!-- 	    <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class> -->
+			<!-- 	</filter>   -->
+				
+			<!-- 	<filter-mapping>   -->
+			<!-- 	    <filter-name>springSecurityFilterChain</filter-name> -->
+			<!-- 	    <url-pattern>/*</url-pattern> -->
+			<!-- 	</filter-mapping>   -->
+				
+	<!-- End of New Security Stuff -->
+
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>

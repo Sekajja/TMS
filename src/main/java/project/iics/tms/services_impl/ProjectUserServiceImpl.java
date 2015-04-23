@@ -18,6 +18,9 @@ public class ProjectUserServiceImpl implements ProjectUserService {
 	@Autowired 
 	private ProjectUserDao projectUserDao;
 	
+//	@Autowired
+//    private Assembler assembler;
+	
 	@Override
 	public void createNewProjectUser(ProjectUser projectUser) {
 		// TODO Auto-generated method stub

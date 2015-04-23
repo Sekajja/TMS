@@ -31,13 +31,9 @@
 	<tr><td>Username:</td><td> <form:input path = "User_Name" placeholder="Enter User Name" /></td></tr>
 	<tr><td>Password:</td><td><form:password path = "Password" placeholder="Enter password"/></td></tr>
 	<tr><td>Confirm password:</td><td><form:password path = "confirmpassword" placeholder="Confirm password"/></td></tr>
-	<tr><td>Gender:</td><td>
-	Male <form:radiobutton path = "Gender" value="Male" />
-	Female <form:radiobutton path = "Gender" value="Female" />
-	</td></tr>
 	<tr><td>Date of Birth:</td><td><form:input path = "DOB" placeholder="DD/MM/YY"/></td></tr>
 	<tr><td></td><td><input type="submit" value="register"/></td></tr>
-	
+	Add contact details here// ...modular...
 	</form:form>
 	</table>
 
