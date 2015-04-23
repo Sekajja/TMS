@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import project.iics.tms.domain.ProjectUser;
+import project.iics.tms.domain.UserRole;
 import project.iics.tms.repository.ProjectUserDao;
 import project.iics.tms.services.ProjectUserService;
 
@@ -70,5 +71,14 @@ public class ProjectUserServiceImpl implements ProjectUserService {
 		return projectUserDao.getRegisteredUsersByLogin(username, password).
 				get(projectUserDao.getRegisteredUsersByLogin(username, password).size()-1);
 	}
+
+	@Override
+	public String assignRoleToProjectUser(ProjectUser projectUser, UserRole userRole) {
+		// TODO Auto-generated method stub
+		projectUserDao.assignRolesToProjectUser(projectUser, userRole);
+		
+		return userRole.ToString();
+	}
+
 
 }

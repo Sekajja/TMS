@@ -7,9 +7,12 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -28,7 +31,7 @@ import javax.persistence.Transient;
 			query = "from ProjectUser where user_name like :user_name AND password like :password"
 
 			)
-})
+	})
 
 
 public class ProjectUser {
@@ -127,7 +130,7 @@ public class ProjectUser {
 		}
 		
 
-		@ManyToMany(cascade = CascadeType.ALL)
+		@ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
 		public Set<UserRole> getUserRoles() {
 			return userRoles;
 		}

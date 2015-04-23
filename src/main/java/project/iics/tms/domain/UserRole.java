@@ -9,8 +9,21 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Transient;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(
+			name = "findRoleByProjectUser",
+			query = "from UserRole where projectUsersUnderRole like :projectUsersUnderRole"
+					),
+	@NamedQuery(
+			name = "findRoleByRoleName",
+			query = "from UserRole where role like :role"
+					)
+})
 public class UserRole {
 	
 	
@@ -28,6 +41,12 @@ public class UserRole {
 		
 		
 	}
+	
+	public UserRole(String role) {
+		
+		setRole(role);
+	}
+
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -65,5 +84,10 @@ public class UserRole {
 		}
 	}
 	
+	@Transient
+	public String ToString(){
+		
+		return role;
+	}
 
 }

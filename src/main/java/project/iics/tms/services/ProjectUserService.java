@@ -3,6 +3,7 @@ package project.iics.tms.services;
 import java.util.List;
 
 import project.iics.tms.domain.ProjectUser;
+import project.iics.tms.domain.UserRole;
 
 
 public interface ProjectUserService{
@@ -14,6 +15,8 @@ public interface ProjectUserService{
 	public List<ProjectUser> getProjectUserByUserName(String username);
 	
 	public boolean isRegisteredProjectUser(String username,String password);
+	
+	public String assignRoleToProjectUser(ProjectUser projectUser, UserRole userRole);
 	
 	public ProjectUser getRegisteredUserByLogin(String username,String password);
 	

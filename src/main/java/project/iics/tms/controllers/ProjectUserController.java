@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import project.iics.tms.HomeController;
 import project.iics.tms.domain.ProjectUser;
 import project.iics.tms.services.ProjectUserService;
+import project.iics.tms.services.UserRoleService;
 
 @Controller
 public class ProjectUserController {
@@ -26,6 +27,9 @@ private static String projectUserName = "";
 private String welcomeView;
 @Autowired
 ProjectUserService projectUserService; 
+
+@Autowired
+UserRoleService userRoleService;
 	/*
 	 * Welcome View Setters and Getters 
 	 * */
@@ -70,8 +74,10 @@ ProjectUserService projectUserService;
 		
 		if(projectUserService.isRegisteredProjectUser(username, password)){
 		projectUser = projectUserService.getRegisteredUserByLogin(username, password);
-		projectUserName = projectUser.getFullName();
-		
+		String role = projectUserService.assignRoleToProjectUser(projectUser, userRoleService.getUserRole("Project Delegate"));
+		//userRoleService.getUserRole("Project Delegate").ToString();
+		projectUserName = projectUser.getFullName()+"\n"+role;
+
 			return "redirect:welcome";
 			
 		}
@@ -107,6 +113,9 @@ ProjectUserService projectUserService;
 		model.addAttribute("projectUser");
 		model.addAttribute("projectUserName",projectUserName);
 		
+		
+		
+		
 		logger.info("You should now see the Welcome Page");
 		
 		return "welcome";
@@ -126,7 +135,7 @@ ProjectUserService projectUserService;
 	
 	
 			return "redirect:welcome";
-	}
+	} 
 	
 	
 	
