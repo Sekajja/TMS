@@ -8,13 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import project.iics.tms.domain.ProjectUser;
-import project.iics.tms.domain.UserRole;
 import project.iics.tms.repository.ProjectUserDao;
 import project.iics.tms.services.ProjectUserService;
 
 @Transactional
 @Service("ProjectUserService")
-public class ProjectUserServiceImpl implements ProjectUserService {
+public class ProjectUserServiceImpl implements ProjectUserService{
 
 	@Autowired 
 	private ProjectUserDao projectUserDao;
@@ -34,13 +33,16 @@ public class ProjectUserServiceImpl implements ProjectUserService {
 		// TODO Auto-generated method stub
 		return projectUserDao.getAll();
 	}
-
+	
+	
 	@Override
 	public List<ProjectUser> getProjectUserByUserName(String username) {
 		// TODO Auto-generated method stub
 		return projectUserDao.findByUserName(username);
 	}
 
+
+	
 	@Override
 	public ProjectUser getProjectUser(Long id) {
 		// TODO Auto-generated method stub
@@ -59,26 +61,7 @@ public class ProjectUserServiceImpl implements ProjectUserService {
 		projectUserDao.deleteById(id);
 	}
 
-	@Override
-	public boolean isRegisteredProjectUser(String username, String password) {
-		// TODO Auto-generated method stub
-		return !projectUserDao.notARegisteredUser(username, password);
-	}
 
-	@Override
-	public ProjectUser getRegisteredUserByLogin(String username, String password) {
-		// TODO Auto-generated method stub
-		return projectUserDao.getRegisteredUsersByLogin(username, password).
-				get(projectUserDao.getRegisteredUsersByLogin(username, password).size()-1);
-	}
-
-	@Override
-	public String assignRoleToProjectUser(ProjectUser projectUser, UserRole userRole) {
-		// TODO Auto-generated method stub
-		projectUserDao.assignRolesToProjectUser(projectUser, userRole);
-		
-		return userRole.ToString();
-	}
 
 
 }

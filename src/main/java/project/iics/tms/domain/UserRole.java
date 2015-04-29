@@ -1,29 +1,17 @@
 package project.iics.tms.domain;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
 @Entity
-@NamedQueries({
-	@NamedQuery(
-			name = "findRoleByProjectUser",
-			query = "from UserRole where projectUsersUnderRole like :projectUsersUnderRole"
-					),
-	@NamedQuery(
-			name = "findRoleByRoleName",
-			query = "from UserRole where role like :role"
-					)
-})
+
 public class UserRole {
 	
 	
@@ -35,7 +23,8 @@ public class UserRole {
 	
 	private Long UserRoleID;
 	String role;
-	private Set<ProjectUser> projectUsersUnderRole = new HashSet<ProjectUser>(0);
+	ProjectUser projectUser;
+	
 	
 	public UserRole() {
 		
@@ -45,6 +34,13 @@ public class UserRole {
 	public UserRole(String role) {
 		
 		setRole(role);
+	}
+
+	
+	
+	public UserRole(String role, ProjectUser projectUser) {
+		this.role = role;
+		this.projectUser = projectUser;
 	}
 
 	
@@ -69,19 +65,14 @@ public class UserRole {
 		this.role = role;
 	}
 	
-	@ManyToMany(mappedBy="userRoles")	
-	public Set<ProjectUser> getProjectUsersUnderRole() {
-		return projectUsersUnderRole;
+	@ManyToOne(fetch = FetchType.EAGER)	
+	@JoinColumn(name = "project_user", nullable = false )
+	public ProjectUser getProjectUser() {
+		return projectUser;
 	}
 
-	public void setProjectUsersUnderRole(Set<ProjectUser> projectUsersUnderRole) {
-		this.projectUsersUnderRole = projectUsersUnderRole;
-	}
-	
-	public void setProjectUserUnderRole(ProjectUser projectUser) {
-		if(!projectUsersUnderRole.contains(projectUser)){
-			projectUsersUnderRole.add(projectUser);
-		}
+	public void setProjectUser(ProjectUser projectUser) {
+		this.projectUser = projectUser;
 	}
 	
 	@Transient
@@ -89,5 +80,7 @@ public class UserRole {
 		
 		return role;
 	}
+
+	
 
 }

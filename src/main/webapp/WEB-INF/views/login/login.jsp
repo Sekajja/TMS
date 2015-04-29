@@ -41,9 +41,11 @@ New to TMS? <a href="register">SignUp</a>
 </font>
 </td></tr>
 </table>
+
 </font>
 </form>
 </div>
+<p><font color="#FF0000">${error} </font> </p>
 </div>
 </body>
 </html>

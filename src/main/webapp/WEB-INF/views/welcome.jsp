@@ -24,7 +24,7 @@
 
 	<div class="inner-box">
 	
-	<h1>Welcome, ${projectUserName}</h1>
+	<h1>Welcome, U have Access to this page, <a href="/tms/admin">Admin Page</a></h1>
 	
 </div>
 
