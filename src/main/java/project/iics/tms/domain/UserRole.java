@@ -1,17 +1,29 @@
 package project.iics.tms.domain;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Transient;
 
 @Entity
-
+@NamedQueries({
+	@NamedQuery(
+			name = "findRoleByProjectUser",
+			query = "from UserRole where projectUsersUnderRole like :projectUsersUnderRole"
+					),
+	@NamedQuery(
+			name = "findRoleByRoleName",
+			query = "from UserRole where role like :role"
+					)
+})
 public class UserRole {
 	
 	
@@ -23,8 +35,7 @@ public class UserRole {
 	
 	private Long UserRoleID;
 	String role;
-	ProjectUser projectUser;
-	
+	private Set<ProjectUser> projectUsersUnderRole = new HashSet<ProjectUser>(0);
 	
 	public UserRole() {
 		
@@ -34,13 +45,6 @@ public class UserRole {
 	public UserRole(String role) {
 		
 		setRole(role);
-	}
-
-	
-	
-	public UserRole(String role, ProjectUser projectUser) {
-		this.role = role;
-		this.projectUser = projectUser;
 	}
 
 	
@@ -65,14 +69,19 @@ public class UserRole {
 		this.role = role;
 	}
 	
-	@ManyToOne(fetch = FetchType.EAGER)	
-	@JoinColumn(name = "project_user", nullable = false )
-	public ProjectUser getProjectUser() {
-		return projectUser;
+	@ManyToMany(mappedBy="userRoles")	
+	public Set<ProjectUser> getProjectUsersUnderRole() {
+		return projectUsersUnderRole;
 	}
 
-	public void setProjectUser(ProjectUser projectUser) {
-		this.projectUser = projectUser;
+	public void setProjectUsersUnderRole(Set<ProjectUser> projectUsersUnderRole) {
+		this.projectUsersUnderRole = projectUsersUnderRole;
+	}
+	
+	public void setProjectUserUnderRole(ProjectUser projectUser) {
+		if(!projectUsersUnderRole.contains(projectUser)){
+			projectUsersUnderRole.add(projectUser);
+		}
 	}
 	
 	@Transient
@@ -80,7 +89,5 @@ public class UserRole {
 		
 		return role;
 	}
-
-	
 
 }

@@ -11,9 +11,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
 
@@ -47,40 +47,10 @@ public class ProjectUser {
 		private String Password;
 		private String Confirmpassword;
 		private String DOB;
-		private Boolean enabled = true;
+		private Boolean Enabled;
+		
 		private Set<UserRole> userRoles = new HashSet<UserRole>(0);
-	
 		
-		
-		public ProjectUser() {
-		
-		}
-
-		public ProjectUser(String user_Name, String password) {
-			
-			User_Name = user_Name;
-			Password = password;
-		}
-
-		public ProjectUser(String user_Name, String password, Boolean enabled) {
-			
-			User_Name = user_Name;
-			Password = password;
-			this.enabled = enabled;
-		}
-
-
-		public ProjectUser(String user_Name,String password,  Boolean enabled,
-				Set<UserRole> userRoles) {
-			
-			Password = password;
-			User_Name = user_Name;
-			this.enabled = enabled;
-			this.userRoles = userRoles;
-		}
-		
-		
-
 		@Id
 		@GeneratedValue(strategy = GenerationType.AUTO)
 		@Column
@@ -91,7 +61,12 @@ public class ProjectUser {
 			this.id = id;
 		}
 		
-		
+		/*JSR-303 API
+		 * 
+		 * @DateTimeFormat(pattern="MM/dd/yyyy")
+    	   @NotNull @Past
+    	   private Date getDOB
+		 * */
 		@Column(name = "dob")
 		public String getDOB() {
 			return DOB;
@@ -159,18 +134,18 @@ public class ProjectUser {
 			Confirmpassword = confirmpassword;
 		}
 		
-
 		
-		@Column(name = "enabled", nullable = false, columnDefinition="boolean default true")
+		
+		@Column(name = "enabled",nullable = false,columnDefinition = "boolean default true")
 		public Boolean getEnabled() {
-			return enabled;
+			return Enabled;
 		}
 		public void setEnabled(Boolean enabled) {
-			this.enabled = enabled;
+			Enabled = enabled;
 		}
 		
 		
-		@OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL,mappedBy="projectUser")
+		@ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
 		public Set<UserRole> getUserRoles() {
 			return userRoles;
 		}
@@ -192,6 +167,7 @@ public class ProjectUser {
 			return fullName;
 		}
 		
+				
 		public String toString() {
 			return "[ProjectUser: id=" + id
 			+ ", firstName=" + First_Name
