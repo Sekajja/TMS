@@ -3,9 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>  
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %> 
 
-<c:url var="adminUrl" value="/admin" />
-<c:url var="postLoginUrl" value="/welcome" />
-<c:url var="logoutUrl" value="/j_spring_security_logout" />
+<c:url var="adminUrl" value="/admin"/>
+<c:url var="postLoginUrl" value="/welcome"/>
+<c:url var="logintUrl" value="/login" />
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -38,7 +38,11 @@
 	
 	<security:authorize access="isAuthenticated()">
 	Hi, <security:authentication property="principal.username" />.
-	<a href="${logoutUrl}">Log out</a>
+	<c:url var="logoutUrl" value="/logout"/>
+	<form action="${logoutUrl}" method="post">
+  	<input type="submit" value="Log out" />
+  	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+	</form>
 	</security:authorize>
 	
 	<security:authorize access="hasAuthority('ROLE_System_Administrator')">
