@@ -5,6 +5,7 @@
 
 <c:url var="homeUrl" value="/" />
 <c:url var="postLoginUrl" value="/j_spring_security_check" />
+<c:url var="loginUrl" value="../tms/login" />
 <c:url var="logoutUrl" value="/login" />
 
 
@@ -39,6 +40,8 @@
 
 <tr><td>Username:</td><td> <input type="text" name = "j_username" placeholder="Enter username"/></td></tr>
 <tr><td>Password:</td><td><input type="password"  name = "j_password" placeholder="Enter password"/></td></tr>
+<tr><td></td><td><input type="hidden" name="${_csrf.parameterName}"value="${_csrf.token}"/></td></tr>
+
 <tr><td></td><td><input type="submit" value="login"/></td></tr>
 
 <tr><td></td><td>

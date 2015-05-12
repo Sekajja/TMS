@@ -5,7 +5,7 @@
 
 <c:url var="adminUrl" value="/admin" />
 <c:url var="postLoginUrl" value="/welcome" />
-<c:url var="logoutUrl" value="/login" />
+<c:url var="logoutUrl" value="/j_spring_security_logout" />
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>

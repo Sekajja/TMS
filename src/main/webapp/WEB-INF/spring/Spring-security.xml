@@ -4,7 +4,7 @@
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-			http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd 
+			http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd 
 			">
 
 	<!-- Security -->	
@@ -18,13 +18,18 @@
 		<intercept-url pattern="/admin"
 			access="hasAuthority('ROLE_System_Administrator')" />
 			
-		<form-login login-page="/login" 		
+		<form-login login-processing-url="/j_spring_security_check"
+		 login-page="/login" 		
+		 username-parameter="j_username"
+		 password-parameter="j_password"
 					authentication-failure-url="/login?failed=true"
 					default-target-url="/welcome" />
+		<csrf/>
 
 		<logout invalidate-session="true" 
 				logout-success-url="/login"
-				logout-url="/logout" />
+				logout-url="/logout" 
+				/>
 
 		<!-- access denied page -->
 		<access-denied-handler error-page="/403" />
