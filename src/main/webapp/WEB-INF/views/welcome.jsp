@@ -14,37 +14,8 @@
 <title>Welcome</title>
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/header.css'/>" />
 </head>
-<body background="<c:url value='/resources/images/background/hexgrid.png'/>">
-<div class="box">
-
-	<div class="inner-box">
-	
-	<h1>Task Management System</h1>
-	
-	</div>
-
-</div>
-
-
-<div class="box">
-
-	<div class="inner-box">
-	
-	<h1>
-	
-	<security:authorize access="isAnonymous()">
-	Hi, Guest <a href="${loginUrl}">Log in</a>
-	</security:authorize>
-	
-	<security:authorize access="isAuthenticated()">
-	Hi, <security:authentication property="principal.username" />.
-	<c:url var="logoutUrl" value="/logout"/>
-	<form action="${logoutUrl}" method="post">
-  	<input type="submit" value="Log out" />
-  	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-	</form>
-	</security:authorize>
-	
+<body>
+	<table height="100px"></table>
 	<security:authorize access="hasAuthority('ROLE_System_Administrator')">
 	Apparently you are a System administrator!!
 	</security:authorize>
@@ -55,11 +26,6 @@
 	
 	<a href="${adminUrl}">Admin</a>
 	
-	</h1>
-	
-</div>
-
-</div>
 
 
 </body>

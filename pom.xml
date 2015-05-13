@@ -62,6 +62,13 @@
 			<version>4.0.1.RELEASE</version>
 		</dependency>
 		
+		<!-- WEB FLOW -->
+		<dependency>
+	        <groupId>org.springframework.webflow</groupId>
+	        <artifactId>spring-webflow</artifactId>
+	        <version>2.4.0.RELEASE</version>
+	    </dependency>
+		
 		<!-- java.lang.NoClassDefFoundError:
 		 org/springframework/web/method/support/CompositeUriComponentsContributor -->
 		 
@@ -121,6 +128,13 @@
 		<version>1.4</version>
 	</dependency>
 	
+	<dependency>
+		<groupId>opensymphony</groupId>
+		<artifactId>sitemesh</artifactId>
+		<version>2.4.2</version>
+	</dependency>
+	
+	
 	
 	<!-- PASSAY(Email Validation) -->
 	<dependency>
@@ -137,9 +151,7 @@
 		<version>18.0</version>
 	</dependency>
 	
-	
-	
-		       
+	       
 		<!-- ////////END OF NEW DEPENDENCIES//////// -->
 		
 		<!-- Spring -->

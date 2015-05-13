@@ -50,16 +50,12 @@ New to TMS? <a href="register">SignUp</a>
 </font>
 </td></tr>
 
-<tr><td></td><td>
-<c:if test="${param.failed == true}">
-<div>Your login attempt failed. Please try again.</div>
-</c:if>
-</td></tr>
-
 </table>
 </font>
 </form>
-
+<c:if test="${param.failed == true}">
+<div class="error">Your login attempt failed. Please try again.</div>
+</c:if>
 
 </div>
 </div>
