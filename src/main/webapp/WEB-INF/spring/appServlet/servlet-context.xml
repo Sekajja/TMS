@@ -60,7 +60,11 @@
         <beans:property name="sessionFactory" ref="sessionFactory"/>
     </beans:bean>
 	
+
+	<!-- WEB FLOW -->
 		
+
 	
+	<!-- WEB FLOW -->
 	
 </beans:beans>

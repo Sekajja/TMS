@@ -1,18 +1,15 @@
 package project.iics.tms.controllers;
 
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.context.request.WebRequest;
-import org.springframework.web.servlet.ModelAndView;
 
 import project.iics.tms.HomeController;
 import project.iics.tms.domain.ProjectUser;
@@ -23,7 +20,6 @@ import project.iics.tms.services.UserRoleService;
 public class ProjectUserController {
 
 private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-private static String projectUserName = "";
 private String welcomeView;
 @Autowired
 ProjectUserService projectUserService; 
@@ -65,6 +61,28 @@ UserRoleService userRoleService;
 		return "login/register";
 	}
 	
+	
+	/*
+	 * 
+	 * Processes Registration form Data
+	 * */
+
+	@RequestMapping(value = "register", method = RequestMethod.POST)
+	public String processFormData(@Valid ProjectUser projectUser,BindingResult result){
+		
+		
+		if (result.hasErrors()) {
+			logger.info("Errors found Processing Project User Form");	
+			return "login/register";
+		 }
+	/*	projectUserService.createNewProjectUser(projectUser);
+		model.addAttribute("projectUser", projectUser);
+
+		logger.info("Processing Project User Form Entry:{}", projectUser);	*/
+			
+		return "redirect:welcome";
+	}
+	
 	/*
 	 * Alternative Method
 	 * 
@@ -96,34 +114,6 @@ UserRoleService userRoleService;
 		return "sorry";
 	}
 	
-	
-	/*
-	 * 
-	 * Processes Registration form Data
-	 * */
-	
-	@RequestMapping(value = "register.do", method = RequestMethod.POST)
-	public String processFormData(@ModelAttribute ProjectUser projectUser,Model model){
-		logger.info("Processing Project User Form Entry:{}", projectUser);	
-		
-		projectUserService.createNewProjectUser(projectUser);
-		projectUserName = projectUser.getFullName();
-	
-	
-			return "redirect:welcome";
-	} 
-	
-	/*
-	 * Alternative Methods
-	 * 
-	 * */
-	public ModelAndView registerUserAccount(
-			  @ModelAttribute("user") @Validated ProjectUser account,
-			  BindingResult result, WebRequest request, Errors errors) {
-		
-				return null;
-			   
-			}
 	
 	
 	

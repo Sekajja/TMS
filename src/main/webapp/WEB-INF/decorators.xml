@@ -12,4 +12,8 @@
         <pattern>/*</pattern>
     </decorator>
     
+    <decorator name="register" page="register_main.jsp">
+        <pattern>/register*</pattern>
+    </decorator>
+    
 </decorators>

@@ -63,11 +63,36 @@
 		</dependency>
 		
 		<!-- WEB FLOW -->
+	    <dependency>
+			<groupId>org.springframework.webflow</groupId>
+			<artifactId>spring-webflow</artifactId>
+			<version>2.4.1.RELEASE</version>
+		</dependency>
+	    
+	    
+	    <dependency>
+			<groupId>org.springframework.webflow</groupId>
+			<artifactId>spring-binding</artifactId>
+			<version>2.4.1.RELEASE</version>
+		</dependency>
+		
 		<dependency>
-	        <groupId>org.springframework.webflow</groupId>
-	        <artifactId>spring-webflow</artifactId>
-	        <version>2.4.0.RELEASE</version>
-	    </dependency>
+			<groupId>org.springframework.webflow</groupId>
+			<artifactId>spring-js</artifactId>
+			<version>2.4.1.RELEASE</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.webflow</groupId>
+			<artifactId>spring-js-resources</artifactId>
+			<version>2.4.1.RELEASE</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.webflow</groupId>
+			<artifactId>spring-faces</artifactId>
+			<version>2.4.1.RELEASE</version>
+		</dependency>
 		
 		<!-- java.lang.NoClassDefFoundError:
 		 org/springframework/web/method/support/CompositeUriComponentsContributor -->

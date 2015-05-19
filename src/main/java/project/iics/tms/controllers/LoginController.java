@@ -75,6 +75,7 @@ public class LoginController {
 		
 		logger.info("You should now see the Welcome Page:"+projectUser.getFirst_Name());
 		
+		
 		return "welcome";
 	}
 	

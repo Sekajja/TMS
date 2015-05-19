@@ -15,13 +15,13 @@ public class UserRoleDaoImpl extends AbstractHbnDao<UserRole> implements UserRol
 
 	@SuppressWarnings("unchecked")
 	public List<UserRole> findRoleByProjectUser(ProjectUser projectUser) {
-		// TODO Auto-generated method stub
+	
 		return getSession().getNamedQuery("findRoleByProjectUser").setString("projectUsersUnderRole", "%" + projectUser + "%").list();
 	}
 
 	@SuppressWarnings("unchecked")
 	public UserRole findRoleByRoleName(String roleName) {
-		// TODO Auto-generated method stub
+	
 		List<UserRole> list = getSession().getNamedQuery("findRoleByRoleName").setString("role", "%" + roleName + "%").list();
 		
 		return list.get((list.size())-1);

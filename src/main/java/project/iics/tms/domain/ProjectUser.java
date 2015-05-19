@@ -1,6 +1,7 @@
 package project.iics.tms.domain;
 
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,6 +16,11 @@ import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 
 
@@ -40,13 +46,30 @@ public class ProjectUser {
 		 */
 	
 		private Long id;		
+		@NotNull(message="Please provide your first name") 
+		@Size(min=1,max=60)
 		private String First_Name;
+		
 		private String Middle_Name;
+		
+		@NotNull(message="Please provide your last name") 
+		@Size(min=1,max=60)
 		private String Last_Name;
+		
+		@NotNull(message="Please provide a user name") 
+		@Size(min=1,max=60)
 		private String User_Name;
+		@NotNull(message="Please provide a password") 
 		private String Password;
+		@NotNull
 		private String Confirmpassword;
-		private String DOB;
+		
+		
+		@DateTimeFormat(pattern="MM/dd/yyyy")
+    	@NotNull(message="Please provide a birth date") 
+    	@Past(message="Are you really from the future")
+		private Date DOB;
+		
 		private Boolean Enabled;
 		
 		private Set<UserRole> userRoles = new HashSet<UserRole>(0);
@@ -61,21 +84,15 @@ public class ProjectUser {
 			this.id = id;
 		}
 		
-		/*JSR-303 API
-		 * 
-		 * @DateTimeFormat(pattern="MM/dd/yyyy")
-    	   @NotNull @Past
-    	   private Date getDOB
-		 * */
-		@Column(name = "dob")
-		public String getDOB() {
+		
+		
+		@Column
+		public Date getDOB() {
 			return DOB;
 		}
-		public void setDOB(String dOB) {
+		public void setDOB(Date dOB) {
 			DOB = dOB;
 		}
-		
-		
 		@Column(name = "first_name")
 		public String getFirst_Name() {
 			return First_Name;

@@ -21,44 +21,43 @@ public class UserRoleServiceImpl implements UserRoleService {
 	
 	@Override
 	public void createNewUserRole(UserRole userRole) {
-		// TODO Auto-generated method stub
+
 		userRoleDao.create(userRole);
 	}
 
 	@Override
 	public List<UserRole> getUserRoles() {
-		// TODO Auto-generated method stub
+		
 		return userRoleDao.getAll();
 	}
 
 	@Override
 	public List<UserRole> getUserRoleByProjectUser(ProjectUser projectUser) {
-		// TODO Auto-generated method stub
+	
 		return userRoleDao.findRoleByProjectUser(projectUser);
 	}
 
 	@Override
 	public UserRole getUserRole(Long id) {
-		// TODO Auto-generated method stub
 		return userRoleDao.get(id);
 	}
 
 	@Override
 	public void updateUserRole(UserRole UserRole) {
-		// TODO Auto-generated method stub
+
 		userRoleDao.update(UserRole);
 		
 	}
 
 	@Override
 	public void deleteUserRole(Long id) {
-		// TODO Auto-generated method stub
+
 		userRoleDao.deleteById(id);
 	}
 
 	@Override
 	public UserRole getUserRole(String userRole) {
-		// TODO Auto-generated method stub
+		
 		return userRoleDao.findRoleByRoleName(userRole);
 	}
 

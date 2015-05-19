@@ -13,7 +13,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Task Management</title>
+<title><decorator:title/></title>
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/decorator_main.css'/>" />
 </head>
 <body>
@@ -56,7 +56,10 @@
     <decorator:body />
     <hr />
     
-    <footer>Footer</footer>
+    <footer>
+    <div align="center" class="pageheader"> Copyright &copy; 2015. IICS Project, All rights reserved. </div>
+    
+    </footer>
 
 </body>
 </html>
