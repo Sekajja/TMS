@@ -1,5 +1,6 @@
 package project.iics.tms.domain;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -24,7 +25,7 @@ import javax.persistence.Transient;
 			query = "from UserRole where role like :role"
 					)
 })
-public class UserRole {
+public class UserRole implements Serializable {
 	
 	
 	/*
@@ -33,6 +34,14 @@ public class UserRole {
 	 * 
 	 * */
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -22031500068182126L;
+	/**
+	 * 
+	 */
+
 	private Long UserRoleID;
 	String role;
 	private Set<ProjectUser> projectUsersUnderRole = new HashSet<ProjectUser>(0);

@@ -1,6 +1,7 @@
 package project.iics.tms.domain;
 
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -22,7 +23,13 @@ import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import project.iics.tms.controllers.validation.PasswordMatches;
+import project.iics.tms.controllers.validation.ValidName;
+import project.iics.tms.controllers.validation.ValidPassword;
 
+/*@PasswordMatches.List({
+@PasswordMatches(first = "Password", second = "Confirmpassword", message = "The password fields must match")
+})*/
 
 @Entity
 @NamedQueries({
@@ -36,42 +43,54 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 			)
 	})
-
-
-public class ProjectUser {
 	
+@PasswordMatches(first = "Password", second = "Confirmpassword", message = "Must match a non-empty password field")
+public class ProjectUser implements Serializable {
+	
+		/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 		/**
 		 * The Project User entity defines a 
 		 * user of the task management system
 		 */
 	
-		private Long id;		
-		@NotNull(message="Please provide your first name") 
+		private Long id;	
+		
+		@ValidName(message="No rockstar names, letters only")
 		@Size(min=1,max=60)
 		private String First_Name;
 		
+		@ValidName(message="No rockstar names, letters only")
 		private String Middle_Name;
 		
-		@NotNull(message="Please provide your last name") 
+		@ValidName(message="No rockstar names, letters only")
 		@Size(min=1,max=60)
 		private String Last_Name;
 		
-		@NotNull(message="Please provide a user name") 
 		@Size(min=1,max=60)
 		private String User_Name;
-		@NotNull(message="Please provide a password") 
-		private String Password;
+		
 		@NotNull
+		@ValidPassword(message="Password must contain Uppercase letters & Digits")
+		private String Password;
+		
+		//Because it really works
+		//@NotBlank(message="Please confirm password")
 		private String Confirmpassword;
 		
 		
-		@DateTimeFormat(pattern="MM/dd/yyyy")
+		@DateTimeFormat(pattern="dd/MM/yyyy")
     	@NotNull(message="Please provide a birth date") 
     	@Past(message="Are you really from the future")
-		private Date DOB;
+		private Date DOB;		
+		public ProjectUser() {
+			// TODO Auto-generated constructor stub
+		}
 		
-		private Boolean Enabled;
-		
+		private Boolean Enabled = true;		
 		private Set<UserRole> userRoles = new HashSet<UserRole>(0);
 		
 		@Id
@@ -153,7 +172,8 @@ public class ProjectUser {
 		
 		
 		
-		@Column(name = "enabled",nullable = false,columnDefinition = "boolean default true")
+		//@Column(name = "enabled",nullable = false,columnDefinition = "BOOLEAN NOT NULL DEFAULT TRUE")
+		@Column(name = "Enabled",columnDefinition = "BOOLEAN DEFAULT TRUE")
 		public Boolean getEnabled() {
 			return Enabled;
 		}
@@ -195,5 +215,7 @@ public class ProjectUser {
 			+ ", date of birth=" + DOB
 			+ "]";
 		}
+		
+	
 
 }

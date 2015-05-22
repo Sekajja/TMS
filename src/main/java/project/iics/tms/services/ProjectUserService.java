@@ -8,6 +8,8 @@ import project.iics.tms.domain.UserRole;
 
 public interface ProjectUserService{
 	
+	public void createProtectedProjectUser(ProjectUser projectUser, String password, String Confirmpassword);
+	
 	public void createNewProjectUser(ProjectUser projectUser);
 	
 	public List<ProjectUser> getProjectUsers() ;

@@ -80,5 +80,12 @@ public class ProjectUserServiceImpl implements ProjectUserService {
 		return userRole.ToString();
 	}
 
+	@Override
+	public void createProtectedProjectUser(ProjectUser projectUser,
+			String password, String Confirmpassword) {
+		projectUserDao.create(projectUser, password,Confirmpassword);
+		
+	}
+
 
 }

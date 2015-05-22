@@ -8,6 +8,7 @@ import project.iics.tms.domain.UserRole;
 
 public interface ProjectUserDao extends Dao<ProjectUser> {
 
+	void create(ProjectUser projectUser, String password, String Confirmpassword);
 	List<ProjectUser> findByUserName(String userName);
 	Boolean notARegisteredUser(String userName, String password);
 	List<ProjectUser> getRegisteredUsersByLogin(String userName, String password);

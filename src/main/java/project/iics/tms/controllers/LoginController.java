@@ -70,10 +70,8 @@ public class LoginController {
 	 * */
 	@RequestMapping(value = "/welcome", method = RequestMethod.GET)
 	public String showWelcome(Model model){
-		logger.info("Welcome the Project User");		
-		ProjectUser projectUser = projectUserService.getProjectUserByUserName("sekajja").get(0);
-		
-		logger.info("You should now see the Welcome Page:"+projectUser.getFirst_Name());
+		logger.info("Welcome the Project User");				
+		logger.info("You should now see the Welcome Page");
 		
 		
 		return "welcome";

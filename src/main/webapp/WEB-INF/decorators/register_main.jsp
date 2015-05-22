@@ -58,10 +58,8 @@
 
 	</article>
 
-	<footer>
-
-		<div align="center" class="pageheader">Copyright &copy; 2015. IICS Project, All rights reserved.</div>
-
+	<footer class="pageheader">
+		Copyright &copy; 2015. IICS Project, All rights reserved.
 	</footer>
 </body>
 </html>

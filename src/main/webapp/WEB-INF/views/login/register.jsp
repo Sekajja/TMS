@@ -17,13 +17,14 @@
 </head>
 <body>
 <!-- modelAttribute="projectUser"  -->
-<form:form  modelAttribute="projectUser" method="post" action="${register_userUrl}">
+<form:form  modelAttribute="projectUser" method="post" action="${register_userUrl}" >
 
+	
 	<table align="center" class="formbox">
 		<tr><td>First name:</td><td> <form:input path = "First_Name" placeholder="Enter First Name"/></td></tr>
 		<tr><td></td><td><form:errors path="First_Name" cssClass="error"/></td></tr>
 		
-		<tr><td>Middle names:</td><td> <form:input path = "Middle_Name" placeholder="Enter Middle Names" /></td>
+		<tr><td>Middle names:</td><td> <form:input path = "Middle_Name" placeholder="Middle Names(optional)"/></td>
 		<tr><td></td><td><form:errors path="Middle_Name" cssClass="error"/></td></tr>
 		
 		<tr><td>Last Name:</td><td><form:input path = "Last_Name" placeholder="Enter Last Name"/></td>
@@ -32,20 +33,22 @@
 		<tr><td>Username:</td><td> <form:input path = "User_Name" placeholder="Enter User Name" /></td>
 		<tr><td></td><td><form:errors path="User_Name" cssClass="error"/></td></tr>
 		
-		<tr><td>Password:</td><td><form:password path = "Password" placeholder="Enter password"/></td>
-		<tr><td></td><td><form:errors path="Password" cssClass="error"/></td></tr>
+		<tr><td>Password:</td><td><form:password path = "Password" placeholder="Enter password" id="password"/></td>
+		<tr><td></td><td><form:errors path="Password" cssClass="error" /></td></tr> 
 		
-		<tr><td>Confirm password:</td><td><form:password path = "confirmpassword" placeholder="Confirm password"/></td>
-		<tr><td></td><td><form:errors path="confirmpassword" cssClass="error"/></td></tr>
+		<tr><td>Confirm password:</td><td><form:password path = "Confirmpassword" placeholder="Confirm password"/></td>
+		<tr><td></td><td><form:errors path="Confirmpassword" cssClass="error"/></td></tr>
 		
-		<tr><td>Date of Birth:</td><td><form:input path = "DOB" placeholder="MM/dd/yy"/></td>
+		<tr><td>Date of Birth:</td><td><form:input path = "DOB" placeholder="dd/MM/yy"/></td>
 		<tr><td></td><td><form:errors path="DOB" cssClass="error"/></td></tr>
 		
 		<tr><td><br></td><td><input type="hidden" name="${_csrf.parameterName}"value="${_csrf.token}"/></td></tr>
 		<tr><td></td><td align="center"><input type="submit" value="register" class="rectround"/></td></tr>	
 	</table>
-
+<%-- <div align="center" style="margin-top:15px;"><form:errors path="Password" cssClass="error" id="passwordVerbose" />
+</div> --%>
 </form:form>
+
 
 </body>
 </html>

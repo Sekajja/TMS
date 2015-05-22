@@ -10,8 +10,7 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
-		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd
-		">
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd">
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
@@ -61,10 +60,12 @@
     </beans:bean>
 	
 
-	<!-- WEB FLOW -->
-		
+	
+	<beans:bean id="messageSource"
+        class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <beans:property name="basename" value="/WEB-INF/classes/messages"></beans:property>
+        <beans:property name="defaultEncoding" value="UTF-8"></beans:property>
+    </beans:bean>
+    
 
-	
-	<!-- WEB FLOW -->
-	
 </beans:beans>

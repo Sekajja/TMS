@@ -26,6 +26,8 @@ ProjectUserService projectUserService;
 
 @Autowired
 UserRoleService userRoleService;
+
+
 	/*
 	 * Welcome View Setters and Getters 
 	 * */
@@ -68,25 +70,26 @@ UserRoleService userRoleService;
 	 * */
 
 	@RequestMapping(value = "register", method = RequestMethod.POST)
-	public String processFormData(@Valid ProjectUser projectUser,BindingResult result){
+	public String processFormData(@Valid ProjectUser projectUser,BindingResult result, Model model){
+
+				if (result.hasErrors()) {
+					logger.info("Errors found Processing Project User Form");
+					
+					return "login/register";
+				}
+				
+		//The creation hierarchy	
+		projectUserService.createProtectedProjectUser(projectUser, projectUser.getPassword(),projectUser.getConfirmpassword());
+		projectUserService.assignRoleToProjectUser(projectUser, userRoleService.getUserRole("ROLE_Project_Delegate"));
+		//The creation
 		
-		
-		if (result.hasErrors()) {
-			logger.info("Errors found Processing Project User Form");	
-			return "login/register";
-		 }
-	/*	projectUserService.createNewProjectUser(projectUser);
 		model.addAttribute("projectUser", projectUser);
 
-		logger.info("Processing Project User Form Entry:{}", projectUser);	*/
+		logger.info("Processing Project User Form Entry:{}", projectUser);	
 			
 		return "redirect:welcome";
 	}
 	
-	/*
-	 * Alternative Method
-	 * 
-	 * */
 	
 		
 	/*

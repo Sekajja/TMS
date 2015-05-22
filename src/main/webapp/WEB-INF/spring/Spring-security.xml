@@ -38,11 +38,14 @@
 	</http>
 
 
+	<beans:bean name="bcryptEncoder"
+class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+
 	<!-- Declare an authentication-manager to use a custom userDetailsService -->
 	<authentication-manager>
 <!-- 		<authentication-provider user-service-ref="userDetailsService"> -->
-		<!-- <password-encoder ref="passwordEncoder"/> -->	
 		<authentication-provider>
+			<password-encoder ref="bcryptEncoder"/>	
 			<jdbc-user-service data-source-ref="myDataSource"
 				users-by-username-query="select user_name, password, enabled
 									from projectuser where user_name = ?"
@@ -62,7 +65,8 @@
 		<beans:property name="username" value="postgres" />
 		<beans:property name="password" value="cancer" />
 	</beans:bean>
-
+	
+	
 	
 	
 
