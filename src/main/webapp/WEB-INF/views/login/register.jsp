@@ -15,7 +15,12 @@
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/decorator_register.css'/>" />
 
 </head>
-<body>
+<body> 
+<section class="spiralbg" >
+			<div>
+				<h2 align="center">Registration</h2>				
+			</div>
+<div>
 <!-- modelAttribute="projectUser"  -->
 <form:form  modelAttribute="projectUser" method="post" action="${register_userUrl}" >
 
@@ -45,10 +50,11 @@
 		<tr><td><br></td><td><input type="hidden" name="${_csrf.parameterName}"value="${_csrf.token}"/></td></tr>
 		<tr><td></td><td align="center"><input type="submit" value="register" class="rectround"/></td></tr>	
 	</table>
-<%-- <div align="center" style="margin-top:15px;"><form:errors path="Password" cssClass="error" id="passwordVerbose" />
-</div> --%>
+
 </form:form>
 
+</div>
+</section>
 
 </body>
 </html>

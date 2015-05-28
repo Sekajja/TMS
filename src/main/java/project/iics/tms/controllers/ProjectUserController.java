@@ -43,17 +43,6 @@ UserRoleService userRoleService;
 	/**
 	 * Simply selects the Registration view to render by returning its name.
 	 */
-	
-	
-	
-	
-	
-	
-	
-	/*
-	 * 
-	 * Registration Redirect
-	 * */
 	@RequestMapping(value = "register", method = RequestMethod.GET)
 	public String registerProjectUser(ProjectUser projectUser){
 		logger.info("Registering new Project User");
@@ -111,9 +100,8 @@ UserRoleService userRoleService;
 	 * */
 	@RequestMapping(value = "/403", method = RequestMethod.GET)
 	public String show403(Model model){
-		logger.info("Welcome System Administrator");		
-		logger.info("You should now see the Admin Page");
-		
+		logger.info("Authorization Error Page");		
+		logger.info("You should now see the 403 Page");
 		return "sorry";
 	}
 	

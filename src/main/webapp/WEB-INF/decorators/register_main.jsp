@@ -14,7 +14,7 @@
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/decorator_register.css'/>" />
 
 </head>
-<body>
+<body background="<c:url value='/resources/images/background/dotls.png'/>">
 <header>
 		<div>
 			<div style="float:left;width:70px;overflow:hidden;">
@@ -34,10 +34,7 @@
 
 	<article style="padding-top: 75px;">
 
-		<section class="spiralbg" >
-			<div>
-				<h1>Registration</h1>
-			</div>
+		
 			<div>
 
 				<div> <font  style="color:#808080;font-family: Impact, Charcoal, sans-serif, Sawasdee;-webkit-font-smoothing:antialiased; font-size:16px;">
@@ -54,12 +51,13 @@
 
 			</div>
 
-		</section>
+	
 
 	</article>
 
 	<footer class="pageheader">
 		Copyright &copy; 2015. IICS Project, All rights reserved.
 	</footer>
+	
 </body>
 </html>

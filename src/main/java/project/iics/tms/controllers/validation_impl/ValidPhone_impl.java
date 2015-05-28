@@ -36,10 +36,16 @@ public class ValidPhone_impl implements ConstraintValidator<ValidPhone, String> 
             return false;
         }
 		
-		if(phoneNumber.matches("07\\d{8}")){
+		if(phoneNumber.matches("07\\d{8}[0-9]*")){
 			return true;
 		}
-		if(phoneNumber.matches("04\\d{8}")){
+		if(phoneNumber.matches("04\\d{8}[0-9]*")){
+			return true;
+		}
+		if(phoneNumber.matches("0[01235689]\\d{8}[0-9]*")){
+			return true;
+		}
+		if(phoneNumber.matches("\\(\\d{3}\\)\\-\\d{1}\\-\\d{3}[\\s]+\\d{3}[\\s]*[0-9]*")){
 			return true;
 		}
 		else if(phoneNumber.matches("[+]([0-9]*[\\.\\s\\-\\(\\)]|[0-9]+){3,24}")){

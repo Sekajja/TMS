@@ -7,44 +7,55 @@
 
 <c:url var="adminUrl" value="/admin"/>
 <c:url var="postLoginUrl" value="/welcome"/>
-<c:url var="logintUrl" value="/login" />
+<c:url var="loginUrl" value="login" />
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title><decorator:title/></title>
-<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/decorator_main.css'/>" />
+<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/welcome.css'/>" />
 </head>
 <body>
 
-	<header>
-	<table width="100%">
+<header>
+		<div>
+			<div style="float:left;width:70px;overflow:hidden;">
+				<img src="<c:url value='/resources/images/logo/Calendar.png'/>" alt="logo" height="70" width="70"/>
+			</div>
+
+			<div style="float:left;overflow:hidden;padding-left: 70px;">
+				<nav style="line-height: 70px">
+					<label>Plan</label> . 
+					<label>Project</label> . 
+					<label>Prosper</label> 
+				</nav>
+			</div>
+
+		</div>
+		
+		
+	<table align= "right"  style="padding-top: 10px;">	
 		<tr>
-			<td align="left"><img src="<c:url value='/resources/images/logo/wierd6.png'/>" height="30px" width="30px"  alt="logo" /></td>
-			<td align="center">Task Management System</td>
-			
 			
 			<security:authorize access="isAnonymous()">
-			<td align="right" class="pageheader">
-			Hi, Guest <a href="${loginUrl}">Log in</a>
+			<td align="right" class="hitext" valign="middle">
+			Hi, Guest.&nbsp;&nbsp;  <a href="${loginUrl}" class="getstartedlinks" style="padding-top:5px;	padding-bottom:5px;padding-left:10px;padding-right:10px;">Log in</a>
 			</td>
 			</security:authorize>
 			
 			<security:authorize access="isAuthenticated()">
-			<td align="right">
-			Hi, <security:authentication property="principal.username" />.
+			<td align="right" class="hitext" valign="middle">
+			Hi, <security:authentication property="principal.username" />.&nbsp;&nbsp;
 			</td>
-			<td align="right">
+			<td align="right" valign="middle">
 			<c:url var="logoutUrl" value="/logout"/>
 			<form action="${logoutUrl}" method="post">
-		  	<input type="submit" value="Log out" />
+		  	<input type="submit" value="Log out" class="logoutbutton"/>
 		  	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 			</form>
 			</td>
 			</security:authorize>
-	
-			
 			
 		</tr>
 	</table>
@@ -52,14 +63,13 @@
 	
     <nav></nav>
     
-    <hr />
+ 
     <decorator:body />
-    <hr />
     
-    <footer>
-    <div align="center" class="pageheader"> Copyright &copy; 2015. IICS Project, All rights reserved. </div>
     
-    </footer>
+<footer class="loginlastfooter">
+Copyright &copy; 2015. IICS Project, All rights reserved.
+</footer>	
 
 </body>
 </html>

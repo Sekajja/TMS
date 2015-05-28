@@ -14,6 +14,11 @@
     
     <decorator name="register" page="register_main.jsp">
         <pattern>/register*</pattern>
+        <pattern>/contacts*</pattern>
+    </decorator>
+    
+     <decorator name="delegate" page="ProjectDelegateDecorator.jsp">
+        <pattern>/delegate*</pattern>
     </decorator>
     
 </decorators>

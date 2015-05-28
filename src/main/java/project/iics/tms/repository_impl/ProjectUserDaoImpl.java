@@ -59,10 +59,12 @@ public class ProjectUserDaoImpl extends AbstractHbnDao<ProjectUser> implements P
 		create(projectUser);
 		
 		if(password.equals(confirmpassword)){
-		String encPassword = passwordEncoder.encode(password);
-		projectUser.setPassword(encPassword);
-		projectUser.setConfirmpassword(encPassword);
-		getSession().saveOrUpdate(projectUser);
+			
+			String encPassword = passwordEncoder.encode(password);
+			projectUser.setPassword(encPassword);
+			projectUser.setConfirmpassword(encPassword);
+			getSession().saveOrUpdate(projectUser);
+			
 		}
 
 	}

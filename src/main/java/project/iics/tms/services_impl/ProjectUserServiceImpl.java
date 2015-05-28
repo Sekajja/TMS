@@ -15,22 +15,18 @@ import project.iics.tms.services.ProjectUserService;
 @Service("projectUserService")
 public class ProjectUserServiceImpl implements ProjectUserService {
 
-	
-	 
-	@Autowired 
+	@Autowired
 	private ProjectUserDao projectUserDao;
-	
-	
+
 	@Override
 	public void createNewProjectUser(ProjectUser projectUser) {
-		
-	
+
 		projectUserDao.create(projectUser);
 	}
 
 	@Override
 	public List<ProjectUser> getProjectUsers() {
-	
+
 		return projectUserDao.getAll();
 	}
 
@@ -49,43 +45,44 @@ public class ProjectUserServiceImpl implements ProjectUserService {
 
 	@Override
 	public void updateProjectUser(ProjectUser projectUser) {
-	
+
 		projectUserDao.update(projectUser);
 	}
 
 	@Override
 	public void deleteProjectUser(Long id) {
-		
+
 		projectUserDao.deleteById(id);
 	}
 
 	@Override
 	public boolean isRegisteredProjectUser(String username, String password) {
-	
+
 		return !projectUserDao.notARegisteredUser(username, password);
 	}
 
 	@Override
 	public ProjectUser getRegisteredUserByLogin(String username, String password) {
-		
-		return projectUserDao.getRegisteredUsersByLogin(username, password).
-				get(projectUserDao.getRegisteredUsersByLogin(username, password).size()-1);
+
+		return projectUserDao.getRegisteredUsersByLogin(username, password)
+				.get(projectUserDao.getRegisteredUsersByLogin(username,
+						password).size() - 1);
 	}
 
 	@Override
-	public String assignRoleToProjectUser(ProjectUser projectUser, UserRole userRole) {
-		
+	public String assignRoleToProjectUser(ProjectUser projectUser,
+			UserRole userRole) {
+
 		projectUserDao.assignRolesToProjectUser(projectUser, userRole);
-		
+
 		return userRole.ToString();
 	}
 
 	@Override
 	public void createProtectedProjectUser(ProjectUser projectUser,
 			String password, String Confirmpassword) {
-		projectUserDao.create(projectUser, password,Confirmpassword);
-		
-	}
+		projectUserDao.create(projectUser, password, Confirmpassword);
 
+	}
 
 }

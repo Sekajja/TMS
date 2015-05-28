@@ -1,5 +1,7 @@
 @CHARSET "UTF-8";
 
+@CHARSET "UTF-8";
+
 h1 {
 	font-family: Impact, Charcoal, sans-serif, Sawasdee;
 	color: #808080;	   
@@ -102,7 +104,7 @@ header {
 	background-color: #606060;
 	background-position: center;
 	box-shadow: 10px 10px 5px #959595;
-	position: absolute;
+	position: fixed;
 	top: 0px;
 	left: 0px;
 	right: 0px;
@@ -120,23 +122,130 @@ footer {
 	inset 0 1px 3px rgba(255, 255, 255, 1); /*top internal highlight*/
 }
 
-.loginfooter {
+.welcome{
+	
 	color: #ffffff;
-	background-color:#e5e5e5;
-	background-image:url("cssImages/iics.png");
-	background-position: center; 
-	background-size:100%;
+	background-color:#606060;
+	height:300px;
 	width: 100%;
-	height: 100px; 	
-	border-top: 3px solid #FF8E8E;
-	border-left: 3px solid #FF8E8E;
-	border-right: 3px solid #FF8E8E;
-	border-radius: 25px;
-	moz-border-radius: 25px;
-	-webkit-border-radius: 25px;
-	-webkit-box-shadow: 0 8px 6px -6px black;
-	-moz-box-shadow: 0 8px 6px -6px black;
-	box-shadow: 0 8px 6px -6px black;
+	font-family: Impact, Charcoal, sans-serif, Sawasdee;
+	text-align: center;
+	font-size: 12px;
+	font-weight: 400;
+	-webkit-font-smoothing: antialiased;	
+	margin-bottom:50px;
+	
+	
+}
+
+.welcomeheader{
+
+	font-family: Impact, Charcoal, sans-serif, Sawasdee;
+	text-align: center;
+	font-size: 300%;
+	font-weight: 600;
+	-webkit-font-smoothing: antialiased;	
+	margin-bottom:50px;	      
+	line-height: 1;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	text-decoration-color: -moz-use-text-color;
+	text-decoration-line: none;
+	text-decoration-style: solid;   
+	-webkit-font-smoothing: antialiased;
+
+	
+	
+}
+
+
+.gettingstarted{
+	display:block;
+	color: #ffffff;
+	background-color:#606060;
+	width: 100%;
+	font-family: Impact, Charcoal, sans-serif, Sawasdee;
+	text-align: center;
+	font-size: 12px;
+	font-weight: 400;
+	-webkit-font-smoothing: antialiased;	
+	
+	
+	
+}
+
+.gettingstarted1{
+	display:inline-block;
+	overflow: hidden;
+	background-color:#505050;
+	
+}
+.gettingstarted2{
+	display:inline-block;
+	overflow: hidden;
+
+	
+}
+.gettingstarted3{
+	display:inline-block;
+	overflow: hidden;
+
+}
+
+.getstartedlinks{
+	
+	color: #ffffff;
+	background-color: #FF8080;
+	border: 1px solid #FF8E8E;
+	border-radius: 10px;
+	moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	font-family: Impact, Charcoal, sans-serif, Sawasdee;
+	text-align: center;
+	text-decoration: none;
+	font-size: 100%;
+	-webkit-font-smoothing: antialiased;
+	-webkit-transition: color .4s ease-out;
+	-moz-transition: color .4s ease-out;
+	-ms-transition: color .4s ease-out;
+	-o-transition: color .4s ease-out;
+	transition: color .4s ease-out;
+}
+
+.getstartedlinks:hover{
+	
+	color: #FF8E8E;
+	background-color: #FFDEDE;
+	border: 1px solid #FF8E8E;
+	border-radius: 8px;
+	moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	font-family: Impact, Charcoal, sans-serif, Sawasdee;
+	text-align: center;
+	font-size: 100%;
+	-webkit-font-smoothing: antialiased;
+}
+
+
+
+
+.welcomefooter {
+	float:right;
+	color: #000000;
+	background-color:#e5e5e5;
+	
+	width: 100%;
+	font-family: Impact, Charcoal, sans-serif, Sawasdee;
+	text-align: center;
+	font-size: 75%;
+	font-weight: 100;
+	-webkit-font-smoothing: antialiased;	
+	
+	
+}
+.welcomefooterlinks{
+	
+	margin:10px
 }
 
 .loginlastfooter {
@@ -144,6 +253,7 @@ footer {
 	background-color: #333333;
 	background-position: center;
 	width: 100%;
+	height:20px;
  	font-family: Impact, Charcoal, sans-serif, Sawasdee;
 	text-align: center;
 	font-size: 75%;
@@ -224,6 +334,46 @@ footer {
 	font-size: 100%;
 	-webkit-font-smoothing: antialiased;
 }
+
+.logoutbutton {
+	
+	color: #ffffff;
+	width: 80px;
+	height: 30px;
+	margin-top:10px;
+	background-color: #FF8E8E;
+	border: 1px solid #FF8E8E;
+	border-radius: 8px;
+	moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	font-family: Impact, Charcoal, sans-serif, Sawasdee;
+	text-align: center;
+	font-size: 100%;
+	-webkit-font-smoothing: antialiased;
+	-webkit-transition: color .4s ease-out;
+	-moz-transition: color .4s ease-out;
+	-ms-transition: color .4s ease-out;
+	-o-transition: color .4s ease-out;
+	transition: color .4s ease-out;
+}
+.logoutbutton:hover {
+	color: #FF8E8E;
+	width: 80px;
+	height: 30px;
+	background-color: #FFEEEE;
+	border: 1px solid #FF8E8E;
+	border-radius: 8px;
+	moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	font-family: Impact, Charcoal, sans-serif, Sawasdee;
+	text-align: center;
+	font-size: 100%;
+	-webkit-font-smoothing: antialiased;
+}
+
+
+
+
 input {
 	color: #333333;
 	width: 200px;
@@ -251,36 +401,6 @@ input:hover {
 	font-size: 14px
 }
 
-.inputkind {
-	color: #333333;
-	width: 200px;
-	height: 30px;
-	border: 1px solid #FF8E8E;
-	padding-left: 10px;
-	padding-right: 20px;
-	border-radius: 25px;
-	moz-border-radius: 25px;
-	-webkit-border-radius: 25px;
-	font-family: Impact, Charcoal, sans-serif, Sawasdee;
-	-webkit-font-smoothing: antialiased;
-	background: #fceeee url(cssImages/arrow.png) no-repeat  padding-box right;
-	font-size: 14px;
-	appearance:none;
-	-moz-appearance:none; /* Firefox */
-	-webkit-appearance:none; /* Safari and Chrome */
-	
-}
-.inputkind:hover {
-	color: #333333;
-	border: 1px solid #606060;
-	padding-left: 10px;
-	border-radius: 25px;
-	moz-border-radius: 25px;
-	-webkit-border-radius: 25px;
-	-webkit-font-smoothing: antialiased;
-	font-size: 14px;
-}
-
 .formbox {
 
 	background-color: #ffffff;
@@ -305,16 +425,7 @@ input:hover {
 	-moz-box-shadow: 0 10px 8px -5px black;
 	box-shadow: 0 10px 8px -5px black;
 }
-.spiralbg {
-	background-image: url("cssImages/spiral_circular.png");
-	background-repeat: no-repeat;
-}
 
-.contactsection {
-	background-image: url("cssImages/mail2.png");
-	background-repeat: no-repeat;
-	
-}
 
 nav label {
 	color: #FFFFFF;
@@ -352,50 +463,20 @@ nav label {
 	
 }
 
-.contactform{
-	background-color: #ffffff;
-	border: 1px solid #FF8E8E;
-	border-radius: 25px;
-	moz-border-radius: 25px;
-	-webkit-border-radius: 25px;
-	padding: 30px;
-	-webkit-box-shadow: 0 8px 6px -6px black;
-	-moz-box-shadow: 0 8px 6px -6px black;
-	box-shadow: 0 8px 6px -6px black;	
-	background:
-	  url(cssImages/mailsmall.jpg) top repeat-x,
-	  url(cssImages/mailsmall.jpg) bottom repeat-x;	
+.hitext{
+	
+	color: #FFFFFF;
+	font-family: Impact, Charcoal, sans-serif, Sawasdee;
+	-webkit-font-smoothing: antialiased;	 
+	font-size: 12px;
+	font-weight: 600;
+	line-height: 1;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	padding-top: 15px;
+	text-decoration-color: -moz-use-text-color;
+	text-decoration-line: none;
+	text-decoration-style: solid;
 }
 
-.contactform:hover {
-	background-color: #ffffff;
-	border: 1px solid #FF6060;
-	border-radius: 25px;
-	moz-border-radius: 25px;
-	-webkit-border-radius: 25px;
-	-webkit-box-shadow: 0 10px 8px -5px black;
-	-moz-box-shadow: 0 10px 8px -5px black;
-	box-shadow: 0 10px 8px -5px black;
-}
-.welcomefooter {
-	float:right;
-	color: #000000;
-	background-color:#f5e5e5;
-	width: 100%;
-	font-family: Impact, Charcoal, sans-serif, Sawasdee;
-	text-align: center;
-	font-size: 75%;
-	font-weight: 100;
-	-webkit-font-smoothing: antialiased;	
-	
-	border-top: 3px solid #FF8E8E;
-	-webkit-box-shadow: 0 8px 6px -6px black;
-	-moz-box-shadow: 0 8px 6px -6px black;
-	box-shadow: 0 8px 6px -6px black;
-	
-	
-}
-.welcomefooterlinks{
-	
-	margin:10px
-}
+

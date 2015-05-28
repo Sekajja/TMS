@@ -1,31 +1,68 @@
 package project.iics.tms.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.Digits;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
 
 import project.iics.tms.controllers.validation.ValidPhone;
 
-public class ContactDetails {
+@Entity
+@NamedQueries({
+	@NamedQuery(
+			name = "findContactDetailsByEmailAddress",
+			query = "from ContactDetails where EmailAddress like :EmailAddress"
+					),
+	@NamedQuery(
+			name = "findContactDetailsByTelephoneNumber",
+			query = "from ContactDetails where TelephoneNumber like :TelephoneNumber"
 
+			)
+	})
+public class ContactDetails implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2073823932653146731L;
 	/**
 	 * The ContactDetails entity represents contact details that belong to the
 	 * user of the task management system
 	 */
 
 	private Long id;
+	@ValidPhone
 	private String TelephoneNumber;
+	@ValidPhone
 	private String MobilePhoneNumber;
 	private String faxNumber;
+	@Email
+	@NotBlank
 	private String EmailAddress;
-	private String HomeAddress;
-	private String PostCode;
+	private String PhysicalAddress;
+	private String BoxNumber;
+	private ProjectUser projectUser;
 
 	
+	
+	public ContactDetails() {
+		
+	}
+
+	public ContactDetails(ProjectUser projectUser) {
+		this.projectUser = projectUser;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column
@@ -36,7 +73,7 @@ public class ContactDetails {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	@ValidPhone
+	
 	@Column
 	public String getTelephoneNumber() {
 		return TelephoneNumber;
@@ -46,7 +83,7 @@ public class ContactDetails {
 		TelephoneNumber = telephoneNumber;
 	}
 	
-	@ValidPhone
+
 	@Column
 	public String getMobilePhoneNumber() {
 		return MobilePhoneNumber;
@@ -64,7 +101,8 @@ public class ContactDetails {
 	public void setFaxNumber(String faxNumber) {
 		this.faxNumber = faxNumber;
 	}
-	@Email
+	
+	
 	@Column
 	public String getEmailAddress() {
 		return EmailAddress;
@@ -75,29 +113,38 @@ public class ContactDetails {
 	}
 	
 	@Column
-	public String getHomeAddress() {
-		return HomeAddress;
+	public String getPhysicalAddress() {
+		return PhysicalAddress;
 	}
 
-	public void setHomeAddress(String homeAddress) {
-		HomeAddress = homeAddress;
+	public void setPhysicalAddress(String PhysicalAddress) {
+		PhysicalAddress = PhysicalAddress;
 	}
-	
 	
 	@Column
-	public String getPostCode() {
-		return PostCode;
+	public String getBoxNumber() {
+		return BoxNumber;
 	}
 
-	public void setPostCode(String postCode) {
-		PostCode = postCode;
+	public void setBoxNumber(String BoxNumber) {
+		BoxNumber = BoxNumber;
+	}
+	
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	public ProjectUser getProjectUser() {
+		return projectUser;
+	}
+
+	public void setProjectUser(ProjectUser projectUser) {
+		this.projectUser = projectUser;
 	}
 
 	public String toString() {
 		return "[ContactDetails: id =" + id + ",Telephone Number ="
 				+ TelephoneNumber + ",Mobilephone Number =" + MobilePhoneNumber
 				+ ",Fax number =" + faxNumber + ",Email Address ="
-				+ EmailAddress + ",Home Address =" + HomeAddress
-				+ ",Post Code =" + PostCode + "]";
+				+ EmailAddress + ",Physical Address =" + PhysicalAddress
+				+ ",Box Number =" + BoxNumber + "]";
 	}
 }
