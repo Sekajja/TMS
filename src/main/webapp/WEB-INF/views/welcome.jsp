@@ -4,8 +4,9 @@
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %> 
 
 <c:url var="delegateUrl" value="/delegate"/>
+<c:url var="reviewerUrl" value="/reviewer"/>
 <c:url var="postLoginUrl" value="/welcome"/>
-<c:url var="loginUrl" value="login" />
+<c:url var="loginUrl" value="login"/>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -45,7 +46,7 @@
 						 a Cisco Corporate Social Responsibility<br><br><br><br><br><br><br>
 					</td></tr>
 					<tr><td valign="bottom">
-					<h3> <a href="${delegateUrl}" class="getstartedlinks" style="padding-top:10px;	padding-bottom:10px;padding-left:30px;padding-right:30px;"> Get Started </a> </h3>
+					<h3> <a href="${reviewerUrl}" class="getstartedlinks" style="padding-top:10px;	padding-bottom:10px;padding-left:30px;padding-right:30px;"> Get Started </a> </h3>
 					</td></tr>
 					</table>
 					
@@ -70,7 +71,7 @@
 	<h3>Project Reviewer</h3>
 	 Cisco Networking Academy,<br> 
 	 a Cisco Corporate Social Responsibility<br><br> 	
-	  <a href="#" class="getstartedlinks" style="padding-top:5px;	padding-bottom:5px;padding-left:10px;padding-right:10px;"> Get Started </a>
+	  <a href="${reviewerUrl}" class="getstartedlinks" style="padding-top:5px;	padding-bottom:5px;padding-left:10px;padding-right:10px;"> Get Started </a>
 </td>
 <td bgcolor="#808080">
 	<h3>Administrator</h3>
@@ -129,3 +130,14 @@
 
 </body>
 </html>
+
+<!-- 
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+Ut enim ad minim veniam, 
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+Excepteur sint occaecat cupidatat non proident, 
+sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+ -->

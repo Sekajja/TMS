@@ -1,11 +1,13 @@
 package project.iics.tms.services_impl;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import project.iics.tms.domain.Project;
 import project.iics.tms.domain.ProjectUser;
 import project.iics.tms.domain.UserRole;
 import project.iics.tms.repository.ProjectUserDao;
@@ -83,6 +85,12 @@ public class ProjectUserServiceImpl implements ProjectUserService {
 			String password, String Confirmpassword) {
 		projectUserDao.create(projectUser, password, Confirmpassword);
 
+	}
+
+	@Override
+	public Set<Project> getProjectUserProjects(ProjectUser projectUser) {
+		
+		return projectUserDao.getProjectUserProjects(projectUser);
 	}
 
 }

@@ -1,14 +1,15 @@
 package project.iics.tms.controllers.validation_impl;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 import org.passay.DigitCharacterRule;
-import org.passay.LengthRule;
 import org.passay.PasswordData;
 import org.passay.PasswordValidator;
+import org.passay.Rule;
 import org.passay.RuleResult;
 import org.passay.UppercaseCharacterRule;
 import org.slf4j.Logger;
@@ -28,10 +29,12 @@ public class ValidPassword_impl  implements ConstraintValidator<ValidPassword, S
     public void initialize(final ValidPassword arg0) {
 
     }
-
     @Override
     public boolean isValid(final String password, final ConstraintValidatorContext context) {
-        final PasswordValidator validator = new PasswordValidator(Arrays.asList(new UppercaseCharacterRule(1), new DigitCharacterRule(1)));
+        List<Rule> list = new ArrayList<Rule>();
+        list.add(new UppercaseCharacterRule(1));
+        list.add(new DigitCharacterRule(1));
+    	final PasswordValidator validator = new PasswordValidator(list);
         final RuleResult result = validator.validate(new PasswordData(password));
         if (result.isValid()) {
             return true;

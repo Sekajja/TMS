@@ -1,7 +1,9 @@
 package project.iics.tms.services;
 
 import java.util.List;
+import java.util.Set;
 
+import project.iics.tms.domain.Project;
 import project.iics.tms.domain.ProjectUser;
 import project.iics.tms.domain.UserRole;
 
@@ -27,5 +29,8 @@ public interface ProjectUserService{
 	public void updateProjectUser(ProjectUser projectUser);
 	
 	public void deleteProjectUser(Long id);
+	
+	public Set<Project> getProjectUserProjects(ProjectUser projectUser) ;
+
 	
 }

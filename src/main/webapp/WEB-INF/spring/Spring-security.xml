@@ -55,8 +55,7 @@ class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 		</authentication-provider>
 	</authentication-manager>
 	
-	<beans:bean id="userDetailsService" class="project.iics.tms.services.security.MyUserDetailsService"> 
-	</beans:bean>
+	
 	
 		<beans:bean id="myDataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<beans:property name="driverClassName" value="org.postgresql.Driver" />
@@ -123,7 +122,8 @@ class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 		</beans:property> 
 		</beans:bean> 
 
-
+	<beans:bean id="userDetailsService" class="project.iics.tms.services.security.MyUserDetailsService"> 
+	</beans:bean>
 		
 
 		<authentication-provider>

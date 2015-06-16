@@ -118,7 +118,7 @@ public class ContactDetails implements Serializable{
 	}
 
 	public void setPhysicalAddress(String PhysicalAddress) {
-		PhysicalAddress = PhysicalAddress;
+		this.PhysicalAddress = PhysicalAddress;
 	}
 	
 	@Column
@@ -127,11 +127,11 @@ public class ContactDetails implements Serializable{
 	}
 
 	public void setBoxNumber(String BoxNumber) {
-		BoxNumber = BoxNumber;
+		this.BoxNumber = BoxNumber;
 	}
 	
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	public ProjectUser getProjectUser() {
 		return projectUser;
 	}

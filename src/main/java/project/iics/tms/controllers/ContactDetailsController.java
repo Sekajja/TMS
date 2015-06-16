@@ -1,10 +1,8 @@
 package project.iics.tms.controllers;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -63,8 +61,7 @@ public class ContactDetailsController {
 					country.put("EAST", "Eastern");
 					country.put("NORTH", "Northern");
 					
-					
-					
+									
 					model.addAttribute("list", country);
 					
 					
@@ -76,17 +73,4 @@ public class ContactDetailsController {
 			return "redirect:welcome";
 }
 	
-	//SimpleFormController
-	protected Map<String, String> referenceData(HttpServletRequest request) throws Exception {
-		Map<String, Map<String, String>> referenceData = new HashMap<String, Map<String, String>>();
-		Map<String,String> country = new LinkedHashMap<String,String>();
-		country.put("CENTRAL", "Central");
-		country.put("WEST", "Western");
-		country.put("EAST", "Eastern");
-		country.put("NORTH", "Northern");
-		
-		referenceData.put("countryList", country);
-		
-		return country;
-	}
 }

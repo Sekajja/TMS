@@ -27,6 +27,8 @@ import project.iics.tms.controllers.validation.PasswordMatches;
 import project.iics.tms.controllers.validation.ValidName;
 import project.iics.tms.controllers.validation.ValidPassword;
 
+
+
 /*@PasswordMatches.List({
  @PasswordMatches(first = "Password", second = "Confirmpassword", message = "The password fields must match")
  })*/
@@ -86,6 +88,7 @@ public class ProjectUser implements Serializable {
 
 	private Boolean Enabled = true;
 	private Set<UserRole> userRoles = new HashSet<UserRole>(0);
+	private Set<Project> projects = new HashSet<Project>(0);
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -187,7 +190,11 @@ public class ProjectUser implements Serializable {
 		}
 	}
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "projectUser")
+	//@OneToMany(fetch = FetchType.EAGER, mappedBy = "projectUser")
+	@OneToMany(fetch = FetchType.LAZY,targetEntity=ContactDetails.class,mappedBy = "projectUser", cascade=CascadeType.ALL)
+	//@Cascade(org.hibernate.annotations.CascadeType.ALL)
+	//@Fetch(FetchMode.SELECT)
+    //@BatchSize(size = 10)
 	public Set<ContactDetails> getContactDetails() {
 		return contactDetails;
 	}
@@ -202,6 +209,16 @@ public class ProjectUser implements Serializable {
 			contactDetails.add(contactDetailsRecord);
 
 		}
+	}
+	
+	//@OneToMany(fetch = FetchType.EAGER, mappedBy = "projectUser")
+	@OneToMany(fetch = FetchType.LAZY,targetEntity=Project.class,mappedBy = "projectUser", cascade=CascadeType.ALL)
+	public Set<Project> getProjects() {
+		return projects;
+	}
+
+	public void setProjects(Set<Project> projects) {
+		this.projects = projects;
 	}
 
 	@Transient

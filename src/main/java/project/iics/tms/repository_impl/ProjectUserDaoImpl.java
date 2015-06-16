@@ -1,13 +1,17 @@
 package project.iics.tms.repository_impl;
 
 import java.util.List;
+import java.util.Set;
 
+import org.hibernate.Hibernate;
+import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
+import project.iics.tms.domain.Project;
 import project.iics.tms.domain.ProjectUser;
 import project.iics.tms.domain.UserRole;
 import project.iics.tms.repository.ProjectUserDao;
@@ -66,7 +70,22 @@ public class ProjectUserDaoImpl extends AbstractHbnDao<ProjectUser> implements P
 			getSession().saveOrUpdate(projectUser);
 			
 		}
+		
+	
 
+	}
+	
+	@Override
+	public Set<Project> getProjectUserProjects(ProjectUser projectUser) {
+		Session session = sessionFactory.openSession();
+		projectUser = load(new Long(projectUser.getId()));
+		//session.load(ProjectUser.class,new Long(projectUser.getId()));
+		Set<Project> projects = projectUser.getProjects();
+	
+		Hibernate.initialize(projects);		
+		session.close();
+		return projects;
+		
 	}
 	
 	

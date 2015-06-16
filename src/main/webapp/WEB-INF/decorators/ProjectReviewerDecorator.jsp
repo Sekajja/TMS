@@ -1,20 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator" prefix="decorator" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>  
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %> 
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %> 
 
 
 <c:url var="adminUrl" value="/admin"/>
 <c:url var="postLoginUrl" value="/welcome"/>
-<c:url var="logintUrl" value="login"/>
+<c:url var="newProjectUrl" value="reviewerproject"/>
+<c:url var="loginUrl" value="login"/>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title><decorator:title/></title>
-<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/delegate.css'/>" />
+
+<!-- JQuery UI Magic -->
+<link rel="stylesheet" href="<c:url value='/resources/js/jquery-ui-1.11.4/jquery-ui.css'/>">
+  <script src="<c:url value='/resources/js/jquery-1.11.2.js'/>"></script>
+  <script src="<c:url value='/resources/js/jquery-ui-1.11.4/jquery-ui.js'/>"></script>
+<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/reviewer.css'/>" />
+
+
 </head>
 <body background="<c:url value='/resources/images/background/dotCircleRed.png'/>">
 
@@ -24,14 +33,32 @@
 				<img src="<c:url value='/resources/images/logo/Calendar.png'/>" alt="logo" height="70" width="70"/>
 			</div>
 
-			<div style="float:left;overflow:hidden;padding-left: 70px;">
-				<nav style="line-height: 70px">
-					<label>Manager</label> . 
-					<label>Projects</label> . 
-					<label>Tasks</label> . 
-					<label>Work Plan</label> 
+		
+			<nav style="float:left;padding-left: 70px;">
+				<ul>
+					<li><label>Manager</label>
+						
+					</li>  
+					<li><label>Project</label>
+
+						<ul>
+						<li><a href="#" id="create-project">Create New Project</a></li>
+						<li><a href="reviewerproject">Open Project</a></li>
+						<li><a href="#">End Project</a></li>
+						</ul>						
+						
+						
+					</li> 
+					<li><label>Tasks</label>
+						<div class="navdiv"></div>
+					</li> 
+					<li><label>Work Plan</label>
+						<div class="navdiv"></div>
+					</li>
+				</ul>
 				</nav>
-			</div>
+			
+			
 
 		</div>
 		
@@ -85,6 +112,50 @@
     
  
     
+    <script type="text/javascript">
+	$(function(){
+		   dialog = $( "#dialog-form" ).dialog({
+	        autoOpen: false,
+	        height: 300,
+	        width: 400,
+	        modal: true
+	        
+		   });
+	$( "#create-project" ).on( "click", function() {
+		        dialog.dialog( "open" );
+	});
+		
+	});
+	
+</script>
+
+	<div id="dialog-form" title="Create New Project" >
+		<form method="post" action="${newProjectUrl}">
+			<table align = "center">
+				<tr>
+				<td><label>Project Name</label></td><td><input type="text" name="ProjectName"/></td>
+				</tr>
+				<tr>
+				<td><td/><td><input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/><td/>
+				<tr/>
+				<tr>			
+				<td></td><td><input type="submit" value="Create New Project"></td>
+				</tr>
+				
+				
+			</table>
+		</form>
+	</div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
 <div class="delegatefooter">
@@ -136,5 +207,3 @@ Copyright &copy; 2015. IICS Project, All rights reserved.
 </body>
 </html>
 
-</body>
-</html>

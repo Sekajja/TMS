@@ -17,8 +17,8 @@
         <pattern>/contacts*</pattern>
     </decorator>
     
-     <decorator name="delegate" page="ProjectDelegateDecorator.jsp">
-        <pattern>/delegate*</pattern>
+     <decorator name="reviewer" page="ProjectReviewerDecorator.jsp">
+        <pattern>/reviewer*</pattern>
     </decorator>
     
 </decorators>

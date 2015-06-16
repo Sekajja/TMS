@@ -17,7 +17,7 @@ public abstract class AbstractHbnDao <T extends Object> implements Dao<T> {
 	
 	//@Autowired private PasswordEncoder passwordEncoder;
 	@Autowired
-	private SessionFactory sessionFactory;
+	protected SessionFactory sessionFactory;
 	private Class<T> domainClass;
 	
 	protected Session getSession() {
