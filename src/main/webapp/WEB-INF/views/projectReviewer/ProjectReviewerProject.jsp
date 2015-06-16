@@ -24,56 +24,7 @@
 
 <body>
 
-	<script type="text/javascript">
-		$(function() {
-			dialog = $("#dialog-form2").dialog({
-				autoOpen : false,
-				height : 300,
-				width : 400,
-				modal : true,
-				dialogClass: 'modal-dialog'
-			}).dialog("widget").find(".ui-dialog-title").hide();
-			
-			$("#create-project2").on("click", function() {
-				dialog.dialog("open");
-			});
-
-		});
-	</script>
-
-	<div id="dialog-form2" title="Create New Project">
-		
-			<form method="post" action="${newProjectUrl}">
-				<table align="center">
-					<tr>
-						<td><label>Project Name</label></td>
-						<td><input type="text" name="ProjectName" /></td>
-					</tr>
-					<tr>
-						<td><label>Project Acronym</label></td>
-						<td><input type="text" name="ProjectAcronym" /></td>
-					</tr>
-					<tr>
-						<td><label>Start Date</label></td>
-						<td><input type="date" name="ProjectAcronym" /></td>
-					</tr>
-					<tr>
-						<td>
-						<td />
-						<td><input type="hidden" name="${_csrf.parameterName}"
-							value="${_csrf.token}" />
-						<td />
-					<tr />
-					<tr>
-						<td></td>
-						<td><input type="submit" value="Create New Project"></td>
-					</tr>
-
-
-				</table>
-			</form>
-		
-	</div>
+	
 
 	<table class="formbox" width="100%" style="margin-top: 100px;">
 		<tr>
@@ -103,7 +54,7 @@
 
 					<table align="right">
 						<tr>
-							<td valign="bottom"><a href="#" id="create-project2"
+							<td valign="bottom"><a href="#" id="NewProjectDialogOpener"
 								style="padding-right: 15px; cursor: pointer;">+ Create New
 									Project</a></td>
 							<td><a href="#" id="projectlinks"
@@ -140,7 +91,55 @@
 	</div>
 </c:if>
 
+<script type="text/javascript">
+		$(function() {
+			
+			$("#NewProjectDialog").dialog({
+				autoOpen : false,
+				height: 300,
+			    width: 400,
+				modal : true,
+				dialogClass: 'modal-dialog'
+			});
+			
+			$("#NewProjectDialogOpener").on("click", function() {
+				$("#NewProjectDialog").dialog("open");
+			});
 
+		});
+	</script>
+
+	<div id="NewProjectDialog" title="Create New Project">
+		
+			<form method="post" action="${newProjectUrl}">
+				<table align="center">
+					<tr>
+						<td><label>Project Name</label></td>
+						<td><input type="text" name="ProjectName"/></td>
+					</tr>
+					<tr>
+						<td><label>Project Acronym</label></td>
+						<td><input type="text" name="ProjectAcronym"/></td>
+					</tr>
+					<tr>
+						<td><label>Start Date</label></td>
+						<td><input type="date" name="StartDate"/></td>
+					</tr>
+					<tr>
+					<td>
+						<td/>
+						<td><input type="hidden" name="${_csrf.parameterName}"
+							value="${_csrf.token}" />
+						<td/>
+					<tr/>
+					<tr>
+						<td></td>
+						<td><input type="submit" value="Create New Project" class="submitNewProject"></td>
+					</tr>
+				</table>
+			</form>
+		
+	</div>
 
 
 

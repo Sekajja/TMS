@@ -22,7 +22,7 @@ h1 {
 		    font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
 		    "Open sans",arial,sans-serif;
 		    
-		   font: 300 16px "HelveticaNeue-Light","HelveticaNeue","Roboto","Open Sans","Arial",sans-serif
+		   font: 300 16px "HelveticaNeue-Light","HelveticaNeue","Roboto","Open Sans","Arial","sans-serif","Impact", "Charcoal", "sans-serif", "Sawasdee
 		    
 		    */
 	
@@ -722,11 +722,60 @@ nav ul li:hover ul {
 	font-size: 12px
 
 }
-#create-project2{
+#NewProjectDialogOpener{
 /* color: #31708f; */
 color: #31708f;
 }
 #projectlinks{
 color: #31708f;
 }
+#NewProjectDialog{
+	padding: 5px;
+	margin-bottom: 20px;
+	border-radius: 4px;
+	color: #333333;
+	background-color: #d9edf7;
+	font: 300 16px/25px "Ubuntu",Arial,"libra sans",sans-serif,"HelveticaNeue-Light","HelveticaNeue","Roboto","Open Sans";
+	
+}
 
+#NewProjectDialog input{
+	padding: 5px;
+	color: #333333;
+	font: 300 16px/25px "Ubuntu",Arial,"libra sans",sans-serif,"HelveticaNeue-Light","HelveticaNeue","Roboto","Open Sans";
+	color: #333333;
+	border: 1px solid #FF8E8E;
+	padding-left: 10px;
+	border-radius: 5px;
+	moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-webkit-font-smoothing: antialiased;
+	width: 100%;
+	height: 15px;	
+	margin-bottom: 5px;
+}
+
+#NewProjectDialog .submitNewProject{
+color: #ffffff;
+	width: 180px;
+	height: 30px;
+	background-color: #FF8E8E;
+	border: 1px solid #FF8E8E;
+	border-radius: 8px;
+	moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	text-align: center;
+	font-size: 100%;
+	-webkit-font-smoothing: antialiased;
+	-webkit-transition: color .4s ease-out;
+	-moz-transition: color .4s ease-out;
+	-ms-transition: color .4s ease-out;
+	-o-transition: color .4s ease-out;
+	transition: color .4s ease-out;
+}
+
+#NewProjectDialog .submitNewProject:hover{
+	color: #FF8E8E;
+	background-color: #FFEEEE;
+	-webkit-font-smoothing: antialiased;
+}

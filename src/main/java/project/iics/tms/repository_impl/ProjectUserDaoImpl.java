@@ -81,7 +81,6 @@ public class ProjectUserDaoImpl extends AbstractHbnDao<ProjectUser> implements P
 		projectUser = load(new Long(projectUser.getId()));
 		//session.load(ProjectUser.class,new Long(projectUser.getId()));
 		Set<Project> projects = projectUser.getProjects();
-	
 		Hibernate.initialize(projects);		
 		session.close();
 		return projects;
