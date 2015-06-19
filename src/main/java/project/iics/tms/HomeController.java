@@ -35,7 +35,10 @@ public class HomeController {
 		String formattedDate = dateFormat.format(date);		
 		logger.info("Task Management System Accesed on {}", formattedDate);
 		
+		//return "redirect:login";
 		return "redirect:login";
 	}
+	
+
 	
 }

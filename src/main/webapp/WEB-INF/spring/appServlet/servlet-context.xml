@@ -21,10 +21,46 @@
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/theme/" />
 
+	
+	<beans:bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+		<beans:property name="order" value="0 " />
+		
+		<beans:property name="contentNegotiationManager">
+			<beans:bean class="org.springframework.web.accept.ContentNegotiationManager">
+				<beans:constructor-arg>
+					<beans:bean class="org.springframework.web.accept.PathExtensionContentNegotiationStrategy">
+						<beans:constructor-arg>
+							<beans:map>
+							
+								<beans:entry key="json" value="application/json"></beans:entry>
+								<beans:entry key="xml" value="application/xml"></beans:entry>
+		
+							</beans:map>
+						</beans:constructor-arg>					
+					</beans:bean>
+				</beans:constructor-arg>
+			</beans:bean>
+		</beans:property>
+		<beans:property name="defaultViews">
+			<beans:list>
+				<beans:bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"></beans:bean>
+				<beans:bean class="org.springframework.web.servlet.view.xml.MarshallingView">
+					<beans:constructor-arg>
+						<beans:bean class="org.springframework.oxm.xstream.XStreamMarshaller">
+						 	<beans:property name="autodetectAnnotations" value="true"/>
+						</beans:bean>
+					</beans:constructor-arg>
+				</beans:bean>
+			</beans:list>
+		</beans:property>
+	</beans:bean>
+	
+	
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
+		<beans:property name="order" value="1" />
 	</beans:bean>
 	
 	<view-controller path="/login" view-name="login/login"/>

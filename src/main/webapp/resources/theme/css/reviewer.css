@@ -22,8 +22,17 @@ h1 {
 		    font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
 		    "Open sans",arial,sans-serif;
 		    
-		   font: 300 16px "HelveticaNeue-Light","HelveticaNeue","Roboto","Open Sans","Arial","sans-serif","Impact", "Charcoal", "sans-serif", "Sawasdee
-		    
+		   	font: 300 16px "HelveticaNeue-Light","HelveticaNeue","Roboto","Open Sans","Arial","sans-serif","Impact", "Charcoal", "sans-serif", "Sawasdee
+		   
+		   	font: 400 12px Impact, Charcoal, sans-serif, Sawasdee;
+		   	font-family: Impact, Charcoal, sans-serif, Sawasdee;
+			-webkit-font-smoothing: antialiased;
+			font-size: 12px;
+			font-weight: 400;
+			line-height: 1;
+			text-transform: uppercase;
+			letter-spacing: 2px;
+		   
 		    */
 	
 }
@@ -91,7 +100,10 @@ h1 {
 	color: #31708f;
 	background-color: #d9edf7;
 	border-color: #bce8f1;
-	font: 300 16px/25px "Ubuntu",Arial,"libra sans",sans-serif,"HelveticaNeue-Light","HelveticaNeue","Roboto","Open Sans";
+	font: 300 16px/25px "Ubuntu",Arial,"libra sans",sans-serif,"HelveticaNeue-Light","HelveticaNeue","Roboto","Open Sans"; 
+	/* font-family: Ubuntu,sans-serif; */
+	font-size: 100%;
+	font-weight: 100;
 }
 
 header {
@@ -627,6 +639,9 @@ nav ul li:hover ul {
 	color: #333333;
 	font-size: 100%;
 	font-family: Impact, Charcoal, sans-serif, Sawasdee;
+	-webkit-font-smoothing: antialiased;
+	
+	
 	
 }
 .header_intro{
@@ -745,27 +760,67 @@ color: #31708f;
 	font: 300 16px/25px "Ubuntu",Arial,"libra sans",sans-serif,"HelveticaNeue-Light","HelveticaNeue","Roboto","Open Sans";
 	color: #333333;
 	border: 1px solid #FF8E8E;
+	border-radius: 5px;
+	moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-webkit-font-smoothing: antialiased;
+	width: 95%;
+	height: 15px;	
+	margin-bottom: 2px;
+}
+
+#NewProjectDialog .acronym{
+	padding: 5px;
+	color: #333333;
+	font: 300 16px/25px "Ubuntu",Arial,"libra sans",sans-serif,"HelveticaNeue-Light","HelveticaNeue","Roboto","Open Sans";
+	
+	color: #333333;
+	border: 1px solid #FF8E8E;
 	padding-left: 10px;
 	border-radius: 5px;
 	moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	-webkit-font-smoothing: antialiased;
-	width: 100%;
+	width: 60px;
+	height: 15px;	
+	margin-bottom: 2px;
+	
+}
+
+#NewProjectDialog .timepiece{
+	padding: 5px;
+	color: #333333;
+	font: 300 14px/22px "Ubuntu",Arial,"libra sans",sans-serif,"HelveticaNeue-Light","HelveticaNeue","Roboto","Open Sans";
+	border: 1px solid #FF8E8E;
+	padding-left: 10px;
+	border-radius: 5px;
+	moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-webkit-font-smoothing: antialiased;
+	width: 120px;
 	height: 15px;	
 	margin-bottom: 5px;
+	background-image: url("cssImages/Calendarbg.png");
+	background-repeat:no-repeat;
+	background-position: right;
+	background-size: 20px 20px;
+	cursor: pointer;
 }
+
 
 #NewProjectDialog .submitNewProject{
 color: #ffffff;
-	width: 180px;
-	height: 30px;
+	width: 60%;
+	height: 40px;
 	background-color: #FF8E8E;
 	border: 1px solid #FF8E8E;
-	border-radius: 8px;
-	moz-border-radius: 8px;
-	-webkit-border-radius: 8px;
+	border-radius: 10px;
+	moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
 	text-align: center;
-	font-size: 100%;
+	margin-top: 10px;
+	margin-right: 5%;
+	font-size: 120%;
 	-webkit-font-smoothing: antialiased;
 	-webkit-transition: color .4s ease-out;
 	-moz-transition: color .4s ease-out;
@@ -779,3 +834,14 @@ color: #ffffff;
 	background-color: #FFEEEE;
 	-webkit-font-smoothing: antialiased;
 }
+
+.ui-datepicker table{
+	color: #EC6E6E; 
+	background-color: #FFF;
+	font: 300 14px/20px "Ubuntu",Arial,"libra sans",sans-serif,"HelveticaNeue-Light","HelveticaNeue","Roboto","Open Sans";
+	
+}
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+	color: #555555;
+}
+

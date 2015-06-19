@@ -12,11 +12,12 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-
 @NamedQueries({
 	@NamedQuery(name = "findProjectByProjectName", query = "from Project where projectname like :projectname"
 
@@ -68,7 +69,8 @@ public class Project implements Serializable {
 	}
 	
 	@Column
-	@NotBlank
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@NotNull(message = "Please provide a Commencement date")
 	public Date getStartDate() {
 		return StartDate;
 	}
@@ -78,7 +80,8 @@ public class Project implements Serializable {
 	}
 
 	@Column
-	@NotBlank
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@NotNull(message = "Please provide a Completion date")
 	public Date getEndDate() {
 		return EndDate;
 	}
@@ -110,7 +113,5 @@ public class Project implements Serializable {
 		return "Project [id=" + id + ", ProjectName=" + ProjectName
 				+ ", projectUser=" + projectUser + "]";
 	}
-	
-	
-	
+		
 }

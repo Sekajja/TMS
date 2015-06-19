@@ -16,7 +16,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title><decorator:title/></title>
-
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300|Roboto:300|Ubuntu:300' rel='stylesheet' type='text/css'>
 <!-- JQuery UI Magic -->
 <link rel="stylesheet" href="<c:url value='/resources/js/jquery-ui-1.11.4/jquery-ui.css'/>">
   <script src="<c:url value='/resources/js/jquery-1.11.2.js'/>"></script>
