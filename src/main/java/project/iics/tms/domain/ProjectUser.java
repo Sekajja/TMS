@@ -205,7 +205,7 @@ public class ProjectUser implements Serializable {
 
 	public void setSingleContactDetailsRecord(
 			ContactDetails contactDetailsRecord) {
-		if (this.contactDetails.contains(contactDetailsRecord)) {
+		if (!this.contactDetails.contains(contactDetailsRecord)) {
 			contactDetails.add(contactDetailsRecord);
 
 		}
@@ -219,6 +219,12 @@ public class ProjectUser implements Serializable {
 
 	public void setProjects(Set<Project> projects) {
 		this.projects = projects;
+	}
+	
+	public void setProject(Project project) {
+		if(!this.projects.contains(project)){
+			projects.add(project);
+		}
 	}
 
 	@Transient

@@ -35,6 +35,7 @@ public class Project implements Serializable {
 	private Date EndDate;
 	private String ProjectDescription;
 	private ProjectUser projectUser;
+	
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -48,7 +49,7 @@ public class Project implements Serializable {
 	}
 
 	@Column
-	@NotBlank
+	@NotBlank(message = "Please provide a Project Name")
 	public String getProjectName() {
 		return ProjectName;
 	}
@@ -59,7 +60,7 @@ public class Project implements Serializable {
 	
 	
 	@Column
-	@NotBlank
+	@NotBlank(message = "Please provide an acronym")
 	public String getProjectAcronym() {
 		return ProjectAcronym;
 	}
@@ -70,7 +71,7 @@ public class Project implements Serializable {
 	
 	@Column
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	@NotNull(message = "Please provide a Commencement date")
+	@NotNull(message = "Provide a Commencement date")
 	public Date getStartDate() {
 		return StartDate;
 	}
@@ -81,7 +82,7 @@ public class Project implements Serializable {
 
 	@Column
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	@NotNull(message = "Please provide a Completion date")
+	@NotNull(message = "Provide a Completion date")
 	public Date getEndDate() {
 		return EndDate;
 	}

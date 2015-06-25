@@ -93,4 +93,13 @@ public class ProjectUserServiceImpl implements ProjectUserService {
 		return projectUserDao.getProjectUserProjects(projectUser);
 	}
 
+	@Override
+	public String assignProjectToProjectUser(ProjectUser projectUser,
+			Project project) {
+		
+		projectUserDao.assignProjectToProjectUser(projectUser, project);
+		
+		return projectUser.toString();
+	}
+
 }

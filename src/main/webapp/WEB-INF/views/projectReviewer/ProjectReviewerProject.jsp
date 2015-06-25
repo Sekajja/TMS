@@ -8,10 +8,12 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 
+
 <c:url var="adminUrl" value="/admin" />
 <c:url var="newProjectUrl" value="reviewerproject" />
 <c:url var="processProjectUrl" value="reviewerproject.json" />
 <c:url var="loginUrl" value="login" />
+
 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -75,12 +77,26 @@
 		<tr>
 			<td>
 				<table id="project_table_header" width="100%">
+				<thead>
 					<tr>
-						<th>Projects</th>
-						<th>Components</th>
-						<th>Tasks</th>
-						<th>Completed</th>
+						<th width="10%"></th>
+						<th width="30%">Project</th>
+						<th width="20%">Duration</th>
+						<th width="40%">Brief</th>
 					</tr>
+				</thead>
+				<tbody id="projectBody">
+				      <c:forEach items="${reviewerprojects}" var="projects">
+				       <tr>
+				        <td><a href="#" id='projectlinks'> ${projects.projectAcronym} </a></td>
+				        <td> ${projects.projectName}</td>
+				        <td> ${projects.endDate}</td>
+				        <td> ${projects.projectDescription}</td>
+				      </tr>
+				      </c:forEach>
+				     
+				      
+				</tbody>	
 				</table>
 			</td>
 		</tr>
@@ -94,7 +110,41 @@
 </c:if>
 
 <script type="text/javascript">
-
+		function getRemainingTime(milliseconds){
+			
+			var days = Math.floor(milliseconds / 1000 / 60 / 60 / 24);
+			milliseconds -= days * 1000 * 60 * 60 * 24;
+			var hours = Math.floor(milliseconds / 1000 / 60 / 60);
+			milliseconds -= hours * 1000 * 60 * 60;
+			var minutes = Math.floor(milliseconds / 1000 / 60);
+			milliseconds -= minutes * 1000 * 60;
+			var seconds = Math.floor(milliseconds / 1000);
+			milliseconds -= seconds * 1000;
+			
+			return ""+days+"d "+hours+"h "+minutes+"m "+seconds+"s ";
+		}
+		
+		
+		function addProject(){
+			
+			var $form = $("#projectForm");
+			var ProjectName = $( "#ProjectName" );
+			var ProjectAcronym = $( "#ProjectAcronym" );
+			var ProjectDescription = $( "#ProjectDescription" );
+			var StartDate = $( "#startdatepicker" );
+			var EndDate = $('#enddatepicker');
+			
+			 $('#projectBody tr:last').after("<tr>" +
+				      "<td><a href='#' id='projectlinks'>" + ProjectAcronym.val() + "</a></td>" +
+				      "<td>" + ProjectName.val() + "</td>" +
+				      "<td>" + EndDate.val() + "</td>" +
+				      "<td>" + ProjectDescription.val() + "</td>" +
+				      "</tr>");
+			
+		}
+		
+		
+				
 		$(function() {
 			
 			$("#NewProjectDialog").dialog({
@@ -134,48 +184,95 @@
 				    	}
 				    });
 			 });
+			  
+			  
+			  $(function() {
+				  
+				  	var $form = $("#projectForm");
+					var ProjectName = $( "#ProjectName" );
+					var ProjectAcronym = $( "#ProjectAcronym" );
+					var ProjectDescription = $( "#ProjectDescription" );
+					var StartDate = $( "#startdatepicker" );
+					var EndDate = $('#enddatepicker');
+				  
+				    $( "#NewProjectDialog" ).on( "submit", function( event ) {
+				    	/*event.preventDefault();*/
+				    	event.preventDefault();			    	
+				        var request = $.ajax({ 
+				        	url:"reviewerproject.json",
+				        	type:"POST",
+				        	data:$form.serialize(),	
+				        	success: function(response){
+								if(response.status == "SUCCESS"){
+									
+									addProject();
+									/* $( "#NewProjectDialog" ).unbind('submit').submit(); */
+									
+									 $.ajax({
+										url:"reviewerproject",
+							        	type:"POST",
+							        	data:$form.serialize(),	
+								         success: function () {
+								            
+								          }    
+									});    	  
+									
+									
+									$("#NewProjectDialog").dialog("close");
+									
+								} else{	
+									$( "#ProjectNameError").html("");
+									$( "#ProjectAcronymError").html("");
+									$( "#ProjectDescriptionError").html("");
+									$( "#StartDateError").html("");
+									$( "#EndDateError").html("");
+									
+					                for(i =0 ; i < response.result.length ; i++){
+						                if(response.result[i].field == "projectName"){
+						                	$( "#ProjectNameError").html("<div class='error' style='float:left'>"+response.result[i].defaultMessage+"</div>");
+						                }
+						                if(response.result[i].field == "projectAcronym"){
+						                	$( "#ProjectAcronymError").html("<div class='error' style='float:left'>"+response.result[i].defaultMessage+"</div>");
+						                } 
+						                if(response.result[i].field == "projectDescription"){
+						                	$( "#ProjectDescriptionError").html("<div class='error' style='float:left'>"+response.result[i].defaultMessage+"</div>");
+						                } 
+						                if(response.result[i].field == "startDate"){
+						                	$( "#StartDateError").html("<div class='error' style='float:left'>"+response.result[i].defaultMessage+"</div>");
+						                } 
+						                if(response.result[i].field == "endDate"){
+						                	$( "#EndDateError").html("<div class='error' style='float:left'>"+response.result[i].defaultMessage+"</div>");
+						                } 
+						               
+					                }
+										
+								}     
+				       		},
+				        });        
+				        
+				        
+				        
+						
+				   });
+			 });
 		});
 		
 		
-				
-		function doAjaxSubmit() {
-			var $form = $("#projectForm");
-			
-				$.ajax({
-				type:"post",
-				data:$form.serialize(),				
-				url:'reviewerproject.json',				 
-				success: function(response){
-					if(response.status == "SUCCESS"){
-						$("#NewProjectDialog").dialog("close");	
-												
-					}else{
-						$("#NewProjectDialog").dialog("open");
-					}
-					
-				},
-				
-				error: function(e){
-					e.preventDefault();
-				}
-			});
-			
-		}
 	</script>
 	<div id="NewProjectDialog" title="Create New Project">
 	
-	<form:form  modelAttribute="project" method="post" action="${processProjectUrl}" id="projectForm">
+	<form:form  modelAttribute="project" method="post" action="${newProjectUrl}" id="projectForm">
 
 	
 	<table align="center" style="padding-top:15px;padding-left:15px;">
-		<tr><td><label>Project Name</label></td><td> <form:input path ="ProjectName"/></td></tr>
-		<tr><td></td><td><form:errors path ="ProjectName" cssClass="error"/></td></tr>
+		<tr><td><label>Project Name</label></td><td> <form:input path ="ProjectName" id="ProjectName"/></td></tr>
+		<tr><td></td><td><div id="ProjectNameError"></div></td></tr>
 		
-		<tr><td><label>Project Acronym</label></td><td> <form:input path ="ProjectAcronym" maxlength="5" class="acronym" style="text-transform: uppercase;"/></td>
-		<tr><td></td><td><form:errors path ="ProjectAcronym" cssClass="error"/></td></tr>
+		<tr><td><label>Project Acronym</label></td><td> <form:input path ="ProjectAcronym" id="ProjectAcronym" maxlength="5" class="acronym" style="text-transform: uppercase;"/></td>
+		<tr><td></td><td><div id="ProjectAcronymError"></div></td></tr>
 		
-		<tr><td><label>Project Description</label></td><td><form:textarea  rows="4" cols="50" path="ProjectDescription" style="width: 95%;color:#666666;margin-bottom:8px;padding:3px;" placeholder="  A brief description of your project (optional)"/></td>
-		<tr><td></td><td><form:errors path="ProjectDescription" cssClass="error"/></td></tr>
+		<tr><td><label>Project Description</label></td><td><form:textarea  rows="4" cols="50" path="ProjectDescription" id="ProjectDescription" style="width: 95%;color:#666666;margin-bottom:8px;padding:3px;" placeholder="  A brief description of your project (optional)"/></td>
+		<tr><td></td><td><div id="ProjectDescriptionError"></div></td></tr>
 		
 		<tr><td><label>Duration</label></td><td> 
 		
@@ -183,19 +280,20 @@
 						<div style="width:50%;float:left;">
 						<label>Start Date</label>
 						<form:input path ="StartDate" class="timepiece" id="startdatepicker" placeholder="dd/mm/yyyy" />
-						<form:errors path ="StartDate" cssClass="error"/>
+						<div id="StartDateError"></div>
 						</div>
 						<div style="width:50%;float:left;">
 						<label>End Date</label>
 						<form:input path ="EndDate" class="timepiece" id="enddatepicker" placeholder="dd/mm/yyyy"/>
-						<form:errors path ="EndDate" cssClass="error"/>
+						<div id="EndDateError"></div>
 						</div>
 		</div>
 		
 		
 		</td></tr>
+				
 		<tr><td><br></td><td><input type="hidden" name="${_csrf.parameterName}"value="${_csrf.token}"/></td></tr>
-		<tr><td></td><td align="right"><input type="submit" value="Create New Project" class="submitNewProject" onclick="doAjaxSubmit()"/></td></tr>	
+		<tr><td></td><td align="right"><input type="submit" value="Create New Project" class="submitNewProject"/></td></tr>	
 	</table>
 
 </form:form>

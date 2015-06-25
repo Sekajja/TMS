@@ -5,8 +5,6 @@ import java.util.Set;
 
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
@@ -19,15 +17,12 @@ import project.iics.tms.repository.ProjectUserDao;
 @Repository("projectUserDao")
 public class ProjectUserDaoImpl extends AbstractHbnDao<ProjectUser> implements ProjectUserDao{
 
-	private static final Logger logger = LoggerFactory.getLogger(ProjectUserDaoImpl.class);
-	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
 	@SuppressWarnings("unchecked")
 	public List<ProjectUser> findByUserName(String userName) {
-		// TODO Auto-generated method stub
-	    logger.info("System reaches find by username");
+	
 		return getSession().getNamedQuery("findUserByUserName").setString("user_name", "%" + userName + "%").list();
 	}
 
@@ -84,6 +79,22 @@ public class ProjectUserDaoImpl extends AbstractHbnDao<ProjectUser> implements P
 		Hibernate.initialize(projects);		
 		session.close();
 		return projects;
+		
+	}
+
+	@Override
+	public void assignProjectToProjectUser(ProjectUser projectUser,
+			Project project) {
+		Session session = sessionFactory.openSession();
+		Set<Project> projects = projectUser.getProjects();
+		
+		Hibernate.initialize(projects);
+		projectUser.setProject(project);
+		
+		session.saveOrUpdate(projectUser);
+		session.saveOrUpdate(project);
+		
+		session.close();
 		
 	}
 	

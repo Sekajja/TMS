@@ -1,6 +1,10 @@
 package project.iics.tms.domain;
 
 public class JsonResponse {
+	/*
+	 * This is the class Spring turns into JSON
+	 * */
+	
 	private String status = null;
 	private Object result = null;
 
@@ -19,5 +23,6 @@ public class JsonResponse {
 	public void setResult(Object result) {
 		this.result = result;
 	}
+
 
 }

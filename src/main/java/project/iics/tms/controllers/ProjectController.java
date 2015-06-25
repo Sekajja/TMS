@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -42,13 +43,14 @@ public class ProjectController {
 
 				if (principal instanceof UserDetails) {
 					  String username = ((UserDetails)principal).getUsername();
-					  logger.info("New Project to be Created For:{}", username);
+					  logger.info("List projects for:{}", username);
 				
 					  projectUser = projectUserService.getProjectUserByUserName(username).get(0);
 				} 
 				else {
 					  String username = principal.toString();
-					  logger.info("[Else Case]New Project Created For:{}", username);
+					  logger.info("[Else Case]List projects for:{}", username);
+					  projectUser = projectUserService.getProjectUserByUserName(username).get(0);
 				}
 				
 				
@@ -58,14 +60,14 @@ public class ProjectController {
 					NoProjectsMessage = true;
 				}	
 				
+				model.addAttribute("reviewerprojects", projectUserService.getProjectUserProjects(projectUser));
 				model.addAttribute("NoProjectsMessage", NoProjectsMessage);
 
 		return "projectReviewer/ProjectReviewerProject";
 	}
 	
-	
 	@RequestMapping(value = "reviewerproject", method = RequestMethod.POST)
- 	public String processFormData(@Valid Project project, BindingResult result, Model model){
+ 	public String processFormData(@Valid Project project, BindingResult result, Model model, ProjectUser reviewer){
 
 			if (result.hasErrors()) {
 				logger.info("Errors creating new Project");
@@ -76,31 +78,32 @@ public class ProjectController {
 			else{
 			
 	//The creation hierarchy	
-	//projectService.createNewProject(project);
+	projectService.createNewProject(project);
+	model.addAttribute("project", project);
 	
 	//The Session
 	Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
+	String username = "";
 	if (principal instanceof UserDetails) {
-	  String username = ((UserDetails)principal).getUsername();
+	  username = ((UserDetails)principal).getUsername();
 	  logger.info("New Project Created For:{}", username);
 	} else {
-	  String username = principal.toString();
-	  logger.info("[Else Case]New Project Created For:{}", username);
+	  username = principal.toString();
+	  logger.info("[Else Case]New Project Created For logged user:{}", username);
 	}
 	
-	model.addAttribute("project", project);
-
-	logger.info("Processing New Project Form Entry:{}", project);	
-
+	
+	reviewer = projectUserService.getProjectUserByUserName(username).get(0);
+	
+	logger.info("New Project Created For Project User:{}", reviewer.getFullName());
+	
+	String reviewerinfo = projectUserService.assignProjectToProjectUser(reviewer, project);
+	logger.debug("Project User info:{}", reviewerinfo.toString());
+	
 	return "redirect:reviewerproject";
-	//return "redirect:ProjectReviewerProject";
+	
 			}
-}
-
-	
-	
-	
+	}
 	
 	@RequestMapping(value = "reviewerproject.json", method = RequestMethod.GET)
 	public String getJsonPage(Project project, ProjectUser projectUser, Model model){
@@ -131,16 +134,15 @@ public class ProjectController {
 				}					
 				model.addAttribute("NoProjectsMessage", NoProjectsMessage);
 				
-
 		return "projectReviewer/ProjectReviewerProject";
 	}
 	
 	
 	@RequestMapping(value = "reviewerproject.json", method = RequestMethod.POST)
-	public  @ResponseBody JsonResponse addProject(@Valid Project project, BindingResult result, Model model){
+	public  @ResponseBody JsonResponse addProject(@ModelAttribute("project") @Valid Project project, BindingResult result, Model model){
 				
 			JsonResponse res = new JsonResponse();
-						
+						//result.getErrorCount()
 				if (result.hasErrors()) {
 					
 					logger.info("Errors creating new Project");
@@ -149,10 +151,9 @@ public class ProjectController {
 					
 				}
 				else{
-					model.addAttribute("project", project);
+					//model.addAttribute("project", project);
 					res.setStatus("SUCCESS");
-					res.setResult(project);
-					
+					res.setResult(project);	
 				}
 
 				

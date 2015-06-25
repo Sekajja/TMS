@@ -71,14 +71,14 @@ h1 {
 
 
 .error {
-	width: 200px;
-	padding: 8px;	
+	padding-left: 5px;
+	padding-right: 5px;
 	border: 1px solid transparent;
-	border-radius: 25px;
+	border-radius: 10px;
 	color: #a94442;
 	background-color: #f2dede;
 	border-color: #ebccd1;
-	font-size: 10px;
+	font-size: 14px;
 
 }
 
@@ -662,13 +662,26 @@ nav ul li:hover ul {
 
 
 
-#project_table_header tr{
+#project_table_header th{
 	
 	color: #ffffff;
 	background-color: #EC6E6E;
 	font-family: Impact, Charcoal, sans-serif, Sawasdee;
 	text-align: center;
 	font-size: 100%;
+	-webkit-font-smoothing: antialiased;
+	
+}
+
+#project_table_header tr{
+	
+	color: #333333;
+	background-color: #FFFFFF;
+	font: 300 14px/20px "Ubuntu",Arial,"libra sans",sans-serif,"HelveticaNeue-Light","HelveticaNeue","Roboto","Open Sans";
+	/* font-family: Impact, Charcoal, sans-serif, Sawasdee; */
+	text-align: center;
+	font-size: 100%;
+	
 	-webkit-font-smoothing: antialiased;
 	
 }
@@ -844,4 +857,5 @@ color: #ffffff;
 .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
 	color: #555555;
 }
+
 
