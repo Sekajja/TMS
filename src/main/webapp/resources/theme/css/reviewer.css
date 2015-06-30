@@ -538,7 +538,9 @@ nav ul li:hover ul {
 	text-decoration-line: none;
 	text-decoration-style: solid;
 	text-decoration-style: solid;
-	
+	position: absolute;
+	top: 70px;
+		
 	
 	
 }
@@ -858,4 +860,21 @@ color: #ffffff;
 	color: #555555;
 }
 
+.txt{
+	
+	color: #333333;
+	font-size: 90%;
+	-webkit-font-smoothing: antialiased;
+}
+.txt b{
+	font-weight: bold;
+}
+
+
+#project_table_header td{
+	
+	border-bottom: 1px solid #FF8E8E;	
+	padding-bottom:10px;
+	padding-top:25px;
+}
 

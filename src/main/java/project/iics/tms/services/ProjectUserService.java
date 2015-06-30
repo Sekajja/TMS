@@ -22,8 +22,6 @@ public interface ProjectUserService{
 	
 	public String assignRoleToProjectUser(ProjectUser projectUser, UserRole userRole);
 	
-	public String assignProjectToProjectUser(ProjectUser projectUser, Project project);
-	
 	public ProjectUser getRegisteredUserByLogin(String username,String password);
 	
 	public ProjectUser getProjectUser(Long i);

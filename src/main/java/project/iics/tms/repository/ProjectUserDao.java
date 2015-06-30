@@ -15,6 +15,5 @@ public interface ProjectUserDao extends Dao<ProjectUser> {
 	Boolean notARegisteredUser(String userName, String password);
 	List<ProjectUser> getRegisteredUsersByLogin(String userName, String password);
 	void assignRolesToProjectUser(ProjectUser projectUser, UserRole userRole);
-	void assignProjectToProjectUser(ProjectUser projectUser, Project project);
 	Set<Project> getProjectUserProjects(ProjectUser projectUser);
 }

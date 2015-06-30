@@ -3,6 +3,7 @@ package project.iics.tms.services;
 import java.util.List;
 
 import project.iics.tms.domain.Project;
+import project.iics.tms.domain.ProjectUser;
 
 public interface ProjectService {
 
@@ -17,5 +18,8 @@ public interface ProjectService {
 	public void updateProject(Project project);
 
 	public void deleteProject(Long id);
+	
+
+	public void setProjectUser(ProjectUser projectUser, Project project);
 
 }

@@ -1,7 +1,19 @@
 package project.iics.tms.controllers;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+
 import javax.validation.Valid;
 
+import org.joda.time.DateTime;
+import org.joda.time.Days;
+import org.joda.time.Hours;
+import org.joda.time.Minutes;
+import org.joda.time.Seconds;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +43,7 @@ public class ProjectController {
 	ProjectUserService projectUserService;
 	
 	
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "reviewerproject", method = RequestMethod.GET)
 	public String getProjectPage(Project project, ProjectUser projectUser, Model model){
 		
@@ -52,15 +65,57 @@ public class ProjectController {
 					  logger.info("[Else Case]List projects for:{}", username);
 					  projectUser = projectUserService.getProjectUserByUserName(username).get(0);
 				}
-				
-				
-				
+	
 				if(projectUserService.getProjectUserProjects(projectUser).isEmpty()){
 					//NoProjectsMessage = "You do not have any projects Currently, Create a new project to get started.";
 					NoProjectsMessage = true;
 				}	
 				
-				model.addAttribute("reviewerprojects", projectUserService.getProjectUserProjects(projectUser));
+				/////////////////////////////////////////////////////////////////////
+				
+				LinkedHashMap<Project, String> times = new LinkedHashMap<Project, String>(0);
+						
+				
+				for(Project projects:projectUserService.getProjectUserProjects(projectUser)){
+					
+					Date dateStop = projects.getEndDate();
+					//Date dateStart = projects.getStartDate();
+										 
+					
+				 
+					try {
+										 
+						//DateTime dt1 = new DateTime(dateStart);
+						DateTime dt1 = DateTime.now();
+						DateTime dt2 = new DateTime(dateStop);
+				 
+						String days = Days.daysBetween(dt1, dt2).getDays() + "d  ";
+						String hours = Hours.hoursBetween(dt1, dt2).getHours() % 24 + "H  ";
+						String minutes = Minutes.minutesBetween(dt1, dt2).getMinutes() % 60 + "m  ";
+						String seconds = Seconds.secondsBetween(dt1, dt2).getSeconds() % 60 + "s  ";
+						
+						if(Days.daysBetween(dt1, dt2).getDays()< 1){
+							String timeremaining = "Out of Time";
+							times.put(projects, timeremaining);
+						
+						}else{
+						
+						String timeremaining = days+hours+minutes+seconds;
+						times.put(projects, timeremaining);
+						}
+						
+						
+					 } catch (Exception e) {
+						
+					 }
+				}
+				
+				
+		
+				
+				//////////////////////////////////////////////////////////////////////
+				model.addAttribute("TimeRemaining", times);
+		
 				model.addAttribute("NoProjectsMessage", NoProjectsMessage);
 
 		return "projectReviewer/ProjectReviewerProject";
@@ -97,8 +152,7 @@ public class ProjectController {
 	
 	logger.info("New Project Created For Project User:{}", reviewer.getFullName());
 	
-	String reviewerinfo = projectUserService.assignProjectToProjectUser(reviewer, project);
-	logger.debug("Project User info:{}", reviewerinfo.toString());
+	projectService.setProjectUser(reviewer, project);
 	
 	return "redirect:reviewerproject";
 	

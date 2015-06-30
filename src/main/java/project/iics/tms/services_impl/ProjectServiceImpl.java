@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import project.iics.tms.domain.Project;
+import project.iics.tms.domain.ProjectUser;
 import project.iics.tms.repository.ProjectDao;
 import project.iics.tms.services.ProjectService;
 
@@ -45,6 +46,12 @@ public class ProjectServiceImpl implements ProjectService {
 	public void deleteProject(Long id) {
 		
 		projectDao.deleteById(id);
+	}
+
+	@Override
+	public void setProjectUser(ProjectUser projectUser, Project project) {
+		
+		projectDao.setProjectUser(projectUser, project);
 	}
 
 }

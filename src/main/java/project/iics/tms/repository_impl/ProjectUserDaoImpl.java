@@ -82,21 +82,7 @@ public class ProjectUserDaoImpl extends AbstractHbnDao<ProjectUser> implements P
 		
 	}
 
-	@Override
-	public void assignProjectToProjectUser(ProjectUser projectUser,
-			Project project) {
-		Session session = sessionFactory.openSession();
-		Set<Project> projects = projectUser.getProjects();
-		
-		Hibernate.initialize(projects);
-		projectUser.setProject(project);
-		
-		session.saveOrUpdate(projectUser);
-		session.saveOrUpdate(project);
-		
-		session.close();
-		
-	}
+	
 	
 	
 

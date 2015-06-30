@@ -16,6 +16,7 @@
 
 
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -42,7 +43,7 @@
 									<div style="float: left; width: 70px; overflow: hidden;">
 										<img
 											src="<c:url value='/resources/images/logo/Calendar.png'/>"
-											alt="logo" height="70" width="70" />
+											alt="logo" height="70" width="70"/>
 									</div>
 								</td>
 								<td valign="middle"><label class="header_intro">Projects</label>
@@ -81,18 +82,20 @@
 					<tr>
 						<th width="10%"></th>
 						<th width="30%">Project</th>
-						<th width="20%">Duration</th>
-						<th width="40%">Brief</th>
+						<th width="25%" style="padding:5px;">Time Left</th>
+						<th width="35%">Brief</th>
 					</tr>
 				</thead>
 				<tbody id="projectBody">
-				      <c:forEach items="${reviewerprojects}" var="projects">
-				       <tr>
-				        <td><a href="#" id='projectlinks'> ${projects.projectAcronym} </a></td>
-				        <td> ${projects.projectName}</td>
-				        <td> ${projects.endDate}</td>
-				        <td> ${projects.projectDescription}</td>
+					  <c:set var="start" scope="session" value="${0}"/>
+				      <c:forEach items="${TimeRemaining}" var="projects">
+				       <tr>				       
+				        <td><a href="#" id='projectlinks' onclick="constructString()"> ${projects.key.projectAcronym} </a></td>
+				        <td> ${projects.key.projectName}</td>
+				        <td ><input type="hidden" value="${projects.key.endDate}" class="end"/><div class="txt"></div></td>
+				        <td> ${projects.key.projectDescription}</td>
 				      </tr>
+				      <c:set var="start" scope="session" value="${start+=1}"/>
 				      </c:forEach>
 				     
 				      
@@ -110,21 +113,7 @@
 </c:if>
 
 <script type="text/javascript">
-		function getRemainingTime(milliseconds){
-			
-			var days = Math.floor(milliseconds / 1000 / 60 / 60 / 24);
-			milliseconds -= days * 1000 * 60 * 60 * 24;
-			var hours = Math.floor(milliseconds / 1000 / 60 / 60);
-			milliseconds -= hours * 1000 * 60 * 60;
-			var minutes = Math.floor(milliseconds / 1000 / 60);
-			milliseconds -= minutes * 1000 * 60;
-			var seconds = Math.floor(milliseconds / 1000);
-			milliseconds -= seconds * 1000;
-			
-			return ""+days+"d "+hours+"h "+minutes+"m "+seconds+"s ";
-		}
-		
-		
+
 		function addProject(){
 			
 			var $form = $("#projectForm");
@@ -137,14 +126,13 @@
 			 $('#projectBody tr:last').after("<tr>" +
 				      "<td><a href='#' id='projectlinks'>" + ProjectAcronym.val() + "</a></td>" +
 				      "<td>" + ProjectName.val() + "</td>" +
-				      "<td>" + EndDate.val() + "</td>" +
+				      "<td style='color: #333333;font-size: 90%;-webkit-font-smoothing: antialiased;'><label style='font-weight: bold;'>End Date: </label>" + EndDate.val() + "</td>" +
 				      "<td>" + ProjectDescription.val() + "</td>" +
 				      "</tr>");
 			
 		}
 		
-		
-				
+			
 		$(function() {
 			
 			$("#NewProjectDialog").dialog({
@@ -185,8 +173,64 @@
 				    });
 			 });
 			  
+			  $('#projectBody tr ').each(function(){		
+					   
+					  showTime($(this).find(" td .end").val(), $(this))
+					  
+			  }
+					  
+			  );
+			 
+				
+			   function showTime(end, element) {
+				    var today=new Date();	
+				  
+				    
+				    var endDate = end.substring(0,10);
+				    var endDateformat = endDate.replace(/-/g, "/");
+				   
+				    var completion = new Date(endDateformat);
+							   
+				    
+				    	 var durationleft = new Date((completion - today));
+				    	 
+				    	 var secondsleft = durationleft/1000;
+				    	 
+				    	 var days = parseInt(secondsleft/86400); 
+				    	 secondsleft = secondsleft % 86400;
+				    	 
+				    	 var hours = parseInt(secondsleft / 3600);
+				    	 secondsleft = secondsleft % 3600;
+				    	   
+				    	 var minutes = parseInt(secondsleft / 60);
+				    	 seconds = parseInt(secondsleft % 60);
+				    	 
+				    	 minutes = checkTime(minutes);
+				    	 seconds = checkTime(seconds);
+				    	 
+				    	 if(secondsleft < 0){
+				    		 
+				    		 element.find("td .txt").html("<b>Out of time</b>");
+				    		 
+				    	 }else{
+				    		
+					    	element.find("td .txt").html(""+days+"<b>:days</b> &nbsp"+hours+"<b>:hrs</b> &nbsp"+minutes+"<b>:min</b> &nbsp"+seconds+"<b>:s</b>");  
+				    	 }
+				    	 
+						
+						 var t = setTimeout(function(){showTime(end, element)},500);
+	    
+				 } 
+			   
 			  
-			  $(function() {
+			  
+			function checkTime(i) {
+						    if (i<10) {i = "0" + i};  // add zero in front of numbers < 10
+						    return i;
+						}
+			
+			  
+			$(function() {
 				  
 				  	var $form = $("#projectForm");
 					var ProjectName = $( "#ProjectName" );
@@ -197,7 +241,7 @@
 				  
 				    $( "#NewProjectDialog" ).on( "submit", function( event ) {
 				    	/*event.preventDefault();*/
-				    	event.preventDefault();			    	
+				    	event.preventDefault();	    	
 				        var request = $.ajax({ 
 				        	url:"reviewerproject.json",
 				        	type:"POST",
@@ -206,20 +250,19 @@
 								if(response.status == "SUCCESS"){
 									
 									addProject();
-									/* $( "#NewProjectDialog" ).unbind('submit').submit(); */
-									
+									//showTime(response.result.endDate);
 									 $.ajax({
 										url:"reviewerproject",
 							        	type:"POST",
 							        	data:$form.serialize(),	
 								         success: function () {
-								            
+								        	 
 								          }    
 									});    	  
-									
-									
+
 									$("#NewProjectDialog").dialog("close");
 									
+																		
 								} else{	
 									$( "#ProjectNameError").html("");
 									$( "#ProjectAcronymError").html("");
