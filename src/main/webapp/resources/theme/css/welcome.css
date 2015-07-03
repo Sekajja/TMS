@@ -3,7 +3,7 @@
 @CHARSET "UTF-8";
 
 h1 {
-	font-family: Impact, Charcoal, sans-serif, Sawasdee;
+	font-family: Century Gothic, Charcoal, sans-serif, Sawasdee;
 	color: #808080;	   
 	text-align: center;
 	font-size: 200%;
@@ -17,7 +17,7 @@ h1 {
 	-webkit-font-smoothing: antialiased;
 	 /*
 		    font-stretch: ultra-condensed|extra-condensed|condensed|semi-condensed|normal|semi-expanded|expanded|extra-expanded|ultra-expanded|initial|inherit;
-		  	font-family: Impact, Charcoal, sans-serif, Sawasdee;
+		  	font-family: Century Gothic, Charcoal, sans-serif, Sawasdee;
 		    font-family: ‘Palatino Linotype’, ‘Book Antiqua’, Palatino, serif;
 		    font-family: Tahoma, Geneva, sans-serif;
 		    font-family: Century Gothic, sans-serif;
@@ -45,7 +45,7 @@ h1 {
 }
 .pref-font {
 	style="color: #333333;
-	font-family: Impact, Charcoal, sans-serif, Sawasdee;
+	font-family: Century Gothic, Charcoal, sans-serif, Sawasdee;
 	font-weight: 100;
 	-webkit-font-smoothing: antialiased;
 }
@@ -128,7 +128,7 @@ footer {
 	background-color:#606060;
 	height:300px;
 	width: 100%;
-	font-family: Impact, Charcoal, sans-serif, Sawasdee;
+	font-family: Century Gothic, Charcoal, sans-serif, Sawasdee;
 	text-align: center;
 	font-size: 12px;
 	font-weight: 400;
@@ -140,7 +140,7 @@ footer {
 
 .welcomeheader{
 
-	font-family: Impact, Charcoal, sans-serif, Sawasdee;
+	font-family: Century Gothic, Charcoal, sans-serif, Sawasdee;
 	text-align: center;
 	font-size: 300%;
 	font-weight: 600;
@@ -164,7 +164,7 @@ footer {
 	color: #ffffff;
 	background-color:#606060;
 	width: 100%;
-	font-family: Impact, Charcoal, sans-serif, Sawasdee;
+	font-family: Century Gothic, Charcoal, sans-serif, Sawasdee;
 	text-align: center;
 	font-size: 12px;
 	font-weight: 400;
@@ -200,7 +200,7 @@ footer {
 	border-radius: 10px;
 	moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
-	font-family: Impact, Charcoal, sans-serif, Sawasdee;
+	font-family: Century Gothic, Charcoal, sans-serif, Sawasdee;
 	text-align: center;
 	text-decoration: none;
 	font-size: 100%;
@@ -220,7 +220,7 @@ footer {
 	border-radius: 8px;
 	moz-border-radius: 8px;
 	-webkit-border-radius: 8px;
-	font-family: Impact, Charcoal, sans-serif, Sawasdee;
+	font-family: Century Gothic, Charcoal, sans-serif, Sawasdee;
 	text-align: center;
 	font-size: 100%;
 	-webkit-font-smoothing: antialiased;
@@ -235,7 +235,7 @@ footer {
 	background-color:#e5e5e5;
 	
 	width: 100%;
-	font-family: Impact, Charcoal, sans-serif, Sawasdee;
+	font-family: Century Gothic, Charcoal, sans-serif, Sawasdee;
 	text-align: center;
 	font-size: 75%;
 	font-weight: 100;
@@ -254,7 +254,7 @@ footer {
 	background-position: center;
 	width: 100%;
 	height:20px;
- 	font-family: Impact, Charcoal, sans-serif, Sawasdee;
+ 	font-family: Century Gothic, Charcoal, sans-serif, Sawasdee;
 	text-align: center;
 	font-size: 75%;
 	font-weight: 100;
@@ -269,7 +269,7 @@ footer {
 
 
 .pageheader {
-	font-family: Impact, Charcoal, sans-serif, Sawasdee;
+	font-family: Century Gothic, Charcoal, sans-serif, Sawasdee;
 	text-align: center;
 	font-size: 75%;
 	font-weight: 100;
@@ -310,7 +310,7 @@ footer {
 	border-radius: 8px;
 	moz-border-radius: 8px;
 	-webkit-border-radius: 8px;
-	font-family: Impact, Charcoal, sans-serif, Sawasdee;
+	font-family: Century Gothic, Charcoal, sans-serif, Sawasdee;
 	text-align: center;
 	font-size: 100%;
 	-webkit-font-smoothing: antialiased;
@@ -329,7 +329,7 @@ footer {
 	border-radius: 8px;
 	moz-border-radius: 8px;
 	-webkit-border-radius: 8px;
-	font-family: Impact, Charcoal, sans-serif, Sawasdee;
+	font-family: Century Gothic, Charcoal, sans-serif, Sawasdee;
 	text-align: center;
 	font-size: 100%;
 	-webkit-font-smoothing: antialiased;
@@ -346,7 +346,7 @@ footer {
 	border-radius: 8px;
 	moz-border-radius: 8px;
 	-webkit-border-radius: 8px;
-	font-family: Impact, Charcoal, sans-serif, Sawasdee;
+	font-family: Century Gothic, Charcoal, sans-serif, Sawasdee;
 	text-align: center;
 	font-size: 100%;
 	-webkit-font-smoothing: antialiased;
@@ -365,7 +365,7 @@ footer {
 	border-radius: 8px;
 	moz-border-radius: 8px;
 	-webkit-border-radius: 8px;
-	font-family: Impact, Charcoal, sans-serif, Sawasdee;
+	font-family: Century Gothic, Charcoal, sans-serif, Sawasdee;
 	text-align: center;
 	font-size: 100%;
 	-webkit-font-smoothing: antialiased;
@@ -383,7 +383,7 @@ input {
 	border-radius: 25px;
 	moz-border-radius: 25px;
 	-webkit-border-radius: 25px;
-	font-family: Impact, Charcoal, sans-serif, Sawasdee;
+	font-family: Century Gothic, Charcoal, sans-serif, Sawasdee;
 	-webkit-font-smoothing: antialiased;
 	font-size: 14px
 }
@@ -396,7 +396,7 @@ input:hover {
 	border-radius: 25px;
 	moz-border-radius: 25px;
 	-webkit-border-radius: 25px;
-	font-family: Impact, Charcoal, sans-serif, Sawasdee;
+	font-family: Century Gothic, Charcoal, sans-serif, Sawasdee;
 	-webkit-font-smoothing: antialiased;
 	font-size: 14px
 }
@@ -429,7 +429,7 @@ input:hover {
 
 nav label {
 	color: #FFFFFF;
-	font-family: Impact, Charcoal, sans-serif, Sawasdee;
+	font-family: Century Gothic, Charcoal, sans-serif, Sawasdee;
 	-webkit-font-smoothing: antialiased;	 
 	font-size: 14px;
 	font-weight: 600;
@@ -466,7 +466,7 @@ nav label {
 .hitext{
 	
 	color: #FFFFFF;
-	font-family: Impact, Charcoal, sans-serif, Sawasdee;
+	font-family: Century Gothic, Charcoal, sans-serif, Sawasdee;
 	-webkit-font-smoothing: antialiased;	 
 	font-size: 12px;
 	font-weight: 600;

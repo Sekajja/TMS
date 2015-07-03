@@ -64,6 +64,7 @@ public class ProjectUser implements Serializable {
 	@Size(min = 1, max = 60)
 	private String Last_Name;
 
+	
 	@Size(min = 1, max = 60)
 	private String User_Name;
 

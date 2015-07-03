@@ -1,7 +1,7 @@
 @CHARSET "UTF-8";
 
 h1 {
-	font-family: Impact, Charcoal, sans-serif, Sawasdee;
+	font-family: Century Gothic, Charcoal, sans-serif, Sawasdee;
 	color: #808080;	   
 	text-align: center;
 	font-size: 200%;
@@ -15,17 +15,17 @@ h1 {
 	-webkit-font-smoothing: antialiased;
 	 /*
 		    font-stretch: ultra-condensed|extra-condensed|condensed|semi-condensed|normal|semi-expanded|expanded|extra-expanded|ultra-expanded|initial|inherit;
-		  	font-family: Impact, Charcoal, sans-serif, Sawasdee;
+		  	font-family: Century Gothic, Charcoal, sans-serif, Sawasdee;
 		    font-family: ‘Palatino Linotype’, ‘Book Antiqua’, Palatino, serif;
 		    font-family: Tahoma, Geneva, sans-serif;
 		    font-family: Century Gothic, sans-serif;
 		    font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
 		    "Open sans",arial,sans-serif;
 		    
-		   	font: 300 16px "HelveticaNeue-Light","HelveticaNeue","Roboto","Open Sans","Arial","sans-serif","Impact", "Charcoal", "sans-serif", "Sawasdee
+		   	font: 300 16px "HelveticaNeue-Light","HelveticaNeue","Roboto","Open Sans","Arial","sans-serif","Century Gothic", "Charcoal", "sans-serif", "Sawasdee
 		   
-		   	font: 400 12px Impact, Charcoal, sans-serif, Sawasdee;
-		   	font-family: Impact, Charcoal, sans-serif, Sawasdee;
+		   	font: 400 12px Century Gothic, Charcoal, sans-serif, Sawasdee;
+		   	font-family: Century Gothic, Charcoal, sans-serif, Sawasdee;
 			-webkit-font-smoothing: antialiased;
 			font-size: 12px;
 			font-weight: 400;
@@ -38,7 +38,7 @@ h1 {
 }
 .pref-font {
 	color: #333333;
-	font-family: Impact, Charcoal, sans-serif, Sawasdee;
+	font-family: Century Gothic, Charcoal, sans-serif, Sawasdee;
 	font-weight: 100;
 	-webkit-font-smoothing: antialiased;
 }
@@ -137,7 +137,7 @@ footer {
 	color: #ffffff;
 	background-color:#606060;
 	width: 100%;
-	font-family: Impact, Charcoal, sans-serif, Sawasdee;
+	font-family: Century Gothic, Charcoal, sans-serif, Sawasdee;
 	text-align: center;
 	font-size: 12px;
 	font-weight: 400;
@@ -156,7 +156,7 @@ footer {
 	background-color:#ffe5e5;
 	border-top: 30px solid #FF7D7D;
 	width: 100%;
-	font-family: Impact, Charcoal, sans-serif, Sawasdee;
+	font-family: Century Gothic, Charcoal, sans-serif, Sawasdee;
 	text-align: center;
 	font-size: 75%;
 	font-weight: 100;
@@ -175,7 +175,7 @@ footer {
 	background-position: center;
 	width: 100%;
 	height:20px;
- 	font-family: Impact, Charcoal, sans-serif, Sawasdee;
+ 	font-family: Century Gothic, Charcoal, sans-serif, Sawasdee;
 	text-align: center;
 	font-size: 75%;
 	font-weight: 100;
@@ -223,7 +223,7 @@ footer {
 	border-radius: 8px;
 	moz-border-radius: 8px;
 	-webkit-border-radius: 8px;
-	font-family: Impact, Charcoal, sans-serif, Sawasdee;
+	font-family: Century Gothic, Charcoal, sans-serif, Sawasdee;
 	text-align: center;
 	font-size: 100%;
 	-webkit-font-smoothing: antialiased;
@@ -242,7 +242,7 @@ footer {
 	border-radius: 8px;
 	moz-border-radius: 8px;
 	-webkit-border-radius: 8px;
-	font-family: Impact, Charcoal, sans-serif, Sawasdee;
+	font-family: Century Gothic, Charcoal, sans-serif, Sawasdee;
 	text-align: center;
 	font-size: 100%;
 	-webkit-font-smoothing: antialiased;
@@ -258,7 +258,7 @@ footer {
 	border-radius: 8px;
 	moz-border-radius: 8px;
 	-webkit-border-radius: 8px;
-	font-family: Impact, Charcoal, sans-serif, Sawasdee;
+	font-family: Century Gothic, Charcoal, sans-serif, Sawasdee;
 	text-align: center;
 	font-size: 100%;
 	-webkit-font-smoothing: antialiased;
@@ -277,7 +277,7 @@ footer {
 	border-radius: 8px;
 	moz-border-radius: 8px;
 	-webkit-border-radius: 8px;
-	font-family: Impact, Charcoal, sans-serif, Sawasdee;
+	font-family: Century Gothic, Charcoal, sans-serif, Sawasdee;
 	text-align: center;
 	font-size: 100%;
 	-webkit-font-smoothing: antialiased;
@@ -295,7 +295,7 @@ input {
 	border-radius: 25px;
 	moz-border-radius: 25px;
 	-webkit-border-radius: 25px;
-	font-family: Impact, Charcoal, sans-serif, Sawasdee;
+	font-family: Century Gothic, Charcoal, sans-serif, Sawasdee;
 	-webkit-font-smoothing: antialiased;
 	font-size: 14px
 }
@@ -308,7 +308,7 @@ input:hover {
 	border-radius: 25px;
 	moz-border-radius: 25px;
 	-webkit-border-radius: 25px;
-	font-family: Impact, Charcoal, sans-serif, Sawasdee;
+	font-family: Century Gothic, Charcoal, sans-serif, Sawasdee;
 	-webkit-font-smoothing: antialiased;
 	font-size: 14px
 }
@@ -375,7 +375,7 @@ input:hover {
 
 nav label {
 	color: #FFFFFF;
-	font-family: Impact, Charcoal, sans-serif, Sawasdee;
+	font-family: Century Gothic, Charcoal, sans-serif, Sawasdee;
 	-webkit-font-smoothing: antialiased;	 
 	font-size: 12px;
 	font-weight: 400;
@@ -467,7 +467,7 @@ nav ul li ul li {
 float:none;
 text-align: left;
   display: block; 
-  font-family: Impact, Charcoal, sans-serif, Sawasdee;
+  font-family: Century Gothic, Charcoal, sans-serif, Sawasdee;
   -webkit-font-smoothing: antialiased;	 
   font-size: 12px;
   font-weight: 400;
@@ -512,7 +512,7 @@ nav ul li:hover ul {
 .hitext{
 	
 	color: #FFFFFF;
-	font-family: Impact, Charcoal, sans-serif, Sawasdee;
+	font-family: Century Gothic, Charcoal, sans-serif, Sawasdee;
 	-webkit-font-smoothing: antialiased;	 
 	font-size: 12px;
 	font-weight: 600;
@@ -526,7 +526,7 @@ nav ul li:hover ul {
 }
 .dash{
 	color: #333333;
-	font-family: Impact, Charcoal, sans-serif, Sawasdee;
+	font-family: Century Gothic, Charcoal, sans-serif, Sawasdee;
 	-webkit-font-smoothing: antialiased;
 	font-size: 12px;
 	font-weight: 400;
@@ -538,11 +538,7 @@ nav ul li:hover ul {
 	text-decoration-line: none;
 	text-decoration-style: solid;
 	text-decoration-style: solid;
-	position: absolute;
-	top: 70px;
-		
-	
-	
+
 }
 
 .dashheader{
@@ -556,9 +552,9 @@ nav ul li:hover ul {
 	border-radius: 8px;
 	moz-border-radius: 8px;
 	-webkit-border-radius: 8px;
-	font-family: Impact, Charcoal, sans-serif, Sawasdee;
+	font-family: Century Gothic, Charcoal, sans-serif, Sawasdee;
 	text-align:left;
-	padding-left: 5px;
+	padding-left: 10px;
 	padding-top: 5px;
 	font-size: 100%;
 	font-weight: 600;
@@ -574,7 +570,7 @@ nav ul li:hover ul {
 	border-radius: 8px;
 	moz-border-radius: 8px;
 	-webkit-border-radius: 8px;
-	font-family: Impact, Charcoal, sans-serif, Sawasdee;
+	font-family: Century Gothic, Charcoal, sans-serif, Sawasdee;
 	text-align:left;
 	padding-left: 5px;
 	padding-top: 5px;
@@ -597,14 +593,14 @@ nav ul li:hover ul {
 	border-radius: 8px;
 	moz-border-radius: 8px;
 	-webkit-border-radius: 8px;
-	font-family: Impact, Charcoal, sans-serif, Sawasdee;
+	font-family: Century Gothic, Charcoal, sans-serif, Sawasdee;
 	text-align: center;
 	font-size: 100%;
 	-webkit-font-smoothing: antialiased;
 }
 .managermenu{
 
-	font-family: Impact, Charcoal, sans-serif, Sawasdee; 
+	font-family: Century Gothic, Charcoal, sans-serif, Sawasdee; 
 	color: #333333;
 	text-align:left;
 	padding-left: 5px;
@@ -623,7 +619,7 @@ nav ul li:hover ul {
 	border-radius: 8px;
 	moz-border-radius: 8px;
 	-webkit-border-radius: 8px;
-	font-family: Impact, Charcoal, sans-serif, Sawasdee;
+	font-family: Century Gothic, Charcoal, sans-serif, Sawasdee;
 	padding-left: 5px;
 	padding-top: 5px;
 	font-size: 100%;
@@ -640,7 +636,7 @@ nav ul li:hover ul {
 
 	color: #333333;
 	font-size: 100%;
-	font-family: Impact, Charcoal, sans-serif, Sawasdee;
+	font-family: Century Gothic, Charcoal, sans-serif, Sawasdee;
 	-webkit-font-smoothing: antialiased;
 	
 	
@@ -658,17 +654,22 @@ nav ul li:hover ul {
 	text-decoration-line: none;
 	text-decoration-style: solid;   
 	-webkit-font-smoothing: antialiased;
-	
+	font-family: Century Gothic, Charcoal, sans-serif, Sawasdee;
 }
 
 
+#project_table_header{
+	
+	height: 60%;
+	
+}
 
 
 #project_table_header th{
 	
 	color: #ffffff;
 	background-color: #EC6E6E;
-	font-family: Impact, Charcoal, sans-serif, Sawasdee;
+	font-family: Century Gothic, Charcoal, sans-serif, Sawasdee;
 	text-align: center;
 	font-size: 100%;
 	-webkit-font-smoothing: antialiased;
@@ -680,7 +681,7 @@ nav ul li:hover ul {
 	color: #333333;
 	background-color: #FFFFFF;
 	font: 300 14px/20px "Ubuntu",Arial,"libra sans",sans-serif,"HelveticaNeue-Light","HelveticaNeue","Roboto","Open Sans";
-	/* font-family: Impact, Charcoal, sans-serif, Sawasdee; */
+	/* font-family: Century Gothic, Charcoal, sans-serif, Sawasdee; */
 	text-align: center;
 	font-size: 100%;
 	
@@ -743,11 +744,11 @@ nav ul li:hover ul {
 	
 	color: #333333;
 	background-color: #EC6E6E;
-	font-family: Impact, Charcoal, sans-serif, Sawasdee;
+	font-family: Century Gothic, Charcoal, sans-serif, Sawasdee;
 	border-radius: 10px;
 	moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
-	font-family: Impact, Charcoal, sans-serif, Sawasdee;
+	font-family: Century Gothic, Charcoal, sans-serif, Sawasdee;
 	-webkit-font-smoothing: antialiased;
 	font-size: 12px
 
@@ -756,10 +757,24 @@ nav ul li:hover ul {
 /* color: #31708f; */
 color: #31708f;
 }
+#EditProjectDialogOpener{
+/* color: #31708f; */
+color: #31708f;
+}
 #projectlinks{
 color: #31708f;
 }
 #NewProjectDialog{
+	padding: 5px;
+	margin-bottom: 20px;
+	border-radius: 4px;
+	color: #333333;
+	background-color: #d9edf7;
+	font: 300 16px/25px "Ubuntu",Arial,"libra sans",sans-serif,"HelveticaNeue-Light","HelveticaNeue","Roboto","Open Sans";
+	
+}
+
+#EditProjectDialog{
 	padding: 5px;
 	margin-bottom: 20px;
 	border-radius: 4px;
@@ -784,7 +799,50 @@ color: #31708f;
 	margin-bottom: 2px;
 }
 
+#NewProjectDialog input:HOVER{
+	border: 1px solid #606060;
+
+}
+
+
+#EditProjectDialog input{
+	padding: 5px;
+	color: #333333;
+	font: 300 16px/25px "Ubuntu",Arial,"libra sans",sans-serif,"HelveticaNeue-Light","HelveticaNeue","Roboto","Open Sans";
+	color: #333333;
+	border: 1px solid #FF8E8E;
+	border-radius: 5px;
+	moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-webkit-font-smoothing: antialiased;
+	width: 95%;
+	height: 15px;	
+	margin-bottom: 2px;
+}
+#EditProjectDialog input:HOVER{
+	border: 1px solid #606060;
+
+}
+
+
 #NewProjectDialog .acronym{
+	padding: 5px;
+	color: #333333;
+	font: 300 16px/25px "Ubuntu",Arial,"libra sans",sans-serif,"HelveticaNeue-Light","HelveticaNeue","Roboto","Open Sans";
+	
+	color: #333333;
+	border: 1px solid #FF8E8E;
+	padding-left: 10px;
+	border-radius: 5px;
+	moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-webkit-font-smoothing: antialiased;
+	width: 60px;
+	height: 15px;	
+	margin-bottom: 2px;
+	
+}
+#EditProjectDialog .acronym{
 	padding: 5px;
 	color: #333333;
 	font: 300 16px/25px "Ubuntu",Arial,"libra sans",sans-serif,"HelveticaNeue-Light","HelveticaNeue","Roboto","Open Sans";
@@ -822,8 +880,51 @@ color: #31708f;
 	cursor: pointer;
 }
 
+#EditProjectDialog .timepiece{
+	padding: 5px;
+	color: #333333;
+	font: 300 14px/22px "Ubuntu",Arial,"libra sans",sans-serif,"HelveticaNeue-Light","HelveticaNeue","Roboto","Open Sans";
+	border: 1px solid #FF8E8E;
+	padding-left: 10px;
+	border-radius: 5px;
+	moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-webkit-font-smoothing: antialiased;
+	width: 120px;
+	height: 15px;	
+	margin-bottom: 5px;
+	background-image: url("cssImages/Calendarbg.png");
+	background-repeat:no-repeat;
+	background-position: right;
+	background-size: 20px 20px;
+	cursor: pointer;
+}
 
 #NewProjectDialog .submitNewProject{
+color: #ffffff;
+	width: 60%;
+	height: 40px;
+	background-color: #FF8E8E;
+	border: 1px solid #FF8E8E;
+	border-radius: 10px;
+	moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	text-align: center;
+	margin-top: 10px;
+	margin-right: 5%;
+	font-size: 120%;
+	-webkit-font-smoothing: antialiased;
+	-webkit-transition: color .4s ease-out;
+	-moz-transition: color .4s ease-out;
+	-ms-transition: color .4s ease-out;
+	-o-transition: color .4s ease-out;
+	transition: color .4s ease-out;
+}
+
+
+
+
+#EditProjectDialog .submitNewProject{
 color: #ffffff;
 	width: 60%;
 	height: 40px;
@@ -847,6 +948,13 @@ color: #ffffff;
 #NewProjectDialog .submitNewProject:hover{
 	color: #FF8E8E;
 	background-color: #FFEEEE;
+	border: 1px solid #FF8E8E;
+	-webkit-font-smoothing: antialiased;
+}
+#EditProjectDialog .submitNewProject:hover{
+	color: #FF8E8E;
+	background-color: #FFEEEE;
+	border: 1px solid #FF8E8E;
 	-webkit-font-smoothing: antialiased;
 }
 
@@ -868,6 +976,7 @@ color: #ffffff;
 }
 .txt b{
 	font-weight: bold;
+	
 }
 
 
@@ -876,5 +985,39 @@ color: #ffffff;
 	border-bottom: 1px solid #FF8E8E;	
 	padding-bottom:10px;
 	padding-top:25px;
+	
 }
 
+#projectChoice{
+	
+	height: 20px;
+	width: 20px;
+}
+
+#ProjectDescription,#ProjectDescription2{
+	
+font: 300 14px/22px "Ubuntu",Arial,"libra sans",sans-serif,"HelveticaNeue-Light","HelveticaNeue","Roboto","Open Sans";
+}
+
+
+	
+	
+
+#ProjectNameSelect {
+	padding: 5px;
+  font: 300 16px/25px "Ubuntu",Arial,"libra sans",sans-serif,"HelveticaNeue-Light","HelveticaNeue","Roboto","Open Sans";
+  color: #333333;
+  border: 1px solid #FF8E8E;
+  border-radius: 5px;
+  moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -webkit-font-smoothing: antialiased;
+  width: 95%;
+  height: 30px;
+  margin-bottom: 2px;
+
+}
+#ProjectNameSelect:hover {
+	
+	border: 1px solid #606060;
+}

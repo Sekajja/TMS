@@ -1,11 +1,7 @@
 package project.iics.tms.controllers;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.List;
 
 import javax.validation.Valid;
 
@@ -23,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -43,7 +40,7 @@ public class ProjectController {
 	ProjectUserService projectUserService;
 	
 	
-	@SuppressWarnings("unchecked")
+	//@SuppressWarnings("unchecked")
 	@RequestMapping(value = "reviewerproject", method = RequestMethod.GET)
 	public String getProjectPage(Project project, ProjectUser projectUser, Model model){
 		
@@ -214,10 +211,40 @@ public class ProjectController {
 		return res;
 	}
 	
+	@RequestMapping(value = "reviewerproject/edit/{id}", method = RequestMethod.GET)
+ 	public String editProject(@PathVariable Integer id, Model model){	
+		Project editedProject = projectService.getProject(new Long(id));
+		model.addAttribute("editedProject",editedProject);
+		return "";
+	}
 	
-	
-	 
-	 	
-	 	
+	@RequestMapping(value = "reviewerproject/edit/{id}", method = RequestMethod.POST)
+ 	public String editProjectPost(@ModelAttribute @Valid Project project, @PathVariable Integer id, ProjectUser reviewer, BindingResult result, Model model){	
+		
+		
+		//The Session
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String username = "";
+		if (principal instanceof UserDetails) {
+		  username = ((UserDetails)principal).getUsername();
+		  logger.info("New Project Created For:{}", username);
+		} else {
+		  username = principal.toString();
+		  logger.info("[Else Case]New Project Created For logged user:{}", username);
+		}
+		
+		
+		reviewer = projectUserService.getProjectUserByUserName(username).get(0);
+		
+		logger.info("New Project Created For Project User:{}", reviewer.getFullName());
+		
+		projectService.setProjectUser(reviewer, project);
+		
+		
+		projectService.updateProject(project);
+		model.addAttribute("UpdateSuccess","The project was updated Successfully");
+		model.addAttribute("project", project);
+		return "projectReviewer/ProjectReviewerProject";
+	}
 	 
 }

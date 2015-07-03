@@ -11,8 +11,14 @@
 
 <c:url var="adminUrl" value="/admin" />
 <c:url var="newProjectUrl" value="reviewerproject" />
+<c:url var="editProjectUrl" value="reviewerproject/edit">
+	
+</c:url>
+<c:url var="deleteProjectUrl" value="reviewerproject/edit">
+	
+</c:url>
 <c:url var="processProjectUrl" value="reviewerproject.json" />
-<c:url var="loginUrl" value="login" />
+<c:url var="loginUrl" value="login"/>
 
 
 
@@ -62,12 +68,7 @@
 							<td valign="bottom"><a href="#" id="NewProjectDialogOpener"
 								style="padding-right: 15px; cursor: pointer;">+ Create New
 									Project</a></td>
-							<td><a href="#" id="projectlinks"
-								style="padding-right: 15px; cursor: pointer;">+ Edit Project</a>
-							</td>
-							<td><a href="#" id="projectlinks"
-								style="padding-right: 15px; cursor: pointer;">+ End Project</a>
-							</td>
+							
 						</tr>
 
 					</table>
@@ -80,6 +81,7 @@
 				<table id="project_table_header" width="100%">
 				<thead>
 					<tr>
+					
 						<th width="10%"></th>
 						<th width="30%">Project</th>
 						<th width="25%" style="padding:5px;">Time Left</th>
@@ -89,11 +91,29 @@
 				<tbody id="projectBody">
 					  <c:set var="start" scope="session" value="${0}"/>
 				      <c:forEach items="${TimeRemaining}" var="projects">
-				       <tr>				       
-				        <td><a href="#" id='projectlinks' onclick="constructString()"> ${projects.key.projectAcronym} </a></td>
-				        <td> ${projects.key.projectName}</td>
-				        <td ><input type="hidden" value="${projects.key.endDate}" class="end"/><div class="txt"></div></td>
-				        <td> ${projects.key.projectDescription}</td>
+				       <tr id="${projects.key.id}">					       	   
+				        <td class="ac"><a href="#" id='projectlinks'> ${projects.key.projectAcronym} </a> </td>
+						
+				        <td class="pn"> ${projects.key.projectName}</td>
+				        <td class="pe"><input type="hidden" value="${projects.key.endDate}" class="end"/><input type="hidden" value="${projects.key.startDate}" class="start"/><input type="hidden" name="projectID" value="${projects.key.id}"/><div class="txt"></div></td>
+				        
+				        <td class="pd" style="text-align: left; padding-left: 10px; padding-right: 10px;">
+				        <c:if test="${projects.key.projectDescription != ''}">
+				  		<font color="#FF8E8E">#</font>
+				        </c:if>
+				         <i class="ds">${projects.key.projectDescription}</i>				        
+				        </td>
+				        
+				        <td><a href="<c:url value='${editProjectUrl}/${projects.key.id}'/>">
+				        
+				        	<img src="<c:url value='/resources/images/icons/edit_icon.png'/>" class="EditProjectDialogOpener" alt="logo" height="18px" width="18px"/>
+				        
+				        </a></td>
+            			<td><a href="<c:url value='${deleteProjectUrl}/${projects.key.id}' />" >
+            				
+            				<img src="<c:url value='/resources/images/icons/delete_icon.png'/>" alt="logo" height="18px" width="18px"/>
+            			
+            			</a></td>
 				      </tr>
 				      <c:set var="start" scope="session" value="${start+=1}"/>
 				      </c:forEach>
@@ -124,11 +144,27 @@
 			var EndDate = $('#enddatepicker');
 			
 			 $('#projectBody tr:last').after("<tr>" +
+					  "<td><input type='checkbox' id='projectChoice'/></td>" +
 				      "<td><a href='#' id='projectlinks'>" + ProjectAcronym.val() + "</a></td>" +
 				      "<td>" + ProjectName.val() + "</td>" +
 				      "<td style='color: #333333;font-size: 90%;-webkit-font-smoothing: antialiased;'><label style='font-weight: bold;'>End Date: </label>" + EndDate.val() + "</td>" +
 				      "<td>" + ProjectDescription.val() + "</td>" +
 				      "</tr>");
+			
+		}
+		
+			function addEditedProject(row){
+			
+			var $form = $("#projectForm2");
+			var ProjectName = $( "#ProjectName2" );
+			var ProjectAcronym = $( "#ProjectAcronym2" );
+			var ProjectDescription = $( "#ProjectDescription2" );
+			var StartDate = $( "#startdatepicker2" );
+			var EndDate = $('#enddatepicker2');
+			 
+			 $("#"+row).find(".ac #projectlinks").html(""+ProjectAcronym.val());
+			 $("#"+row).find(".pn").html(""+ProjectName.val());			 
+			 $("#"+row).find(".pd .ds").html(""+ProjectDescription.val());
 			
 		}
 		
@@ -146,6 +182,55 @@
 			$("#NewProjectDialogOpener").on("click", function() {
 				$("#NewProjectDialog").dialog("open");
 			});
+			
+			
+			$("#EditProjectDialog").dialog({
+				autoOpen : false,
+				height: 440,
+			    width: 650,
+				modal : true,
+				dialogClass: 'modal-dialog'
+			});
+			
+			$(".EditProjectDialogOpener").on("click", function() {
+				event.preventDefault();
+				$( "#ProjectNameError2").html("");
+				$( "#ProjectAcronymError2").html("");
+				$( "#ProjectDescriptionError2").html("");
+				$( "#StartDateError2").html("");
+				$( "#EndDateError2").html("");
+				
+				$("#EditProjectDialog").dialog("open");
+				
+				
+				var row =$(this).closest('tr').attr('id');
+				
+				$("#projectid").val(row);
+				
+				$( "#ProjectName2" ).val($("#"+row).find(".pn").html());
+				
+				$( "#ProjectAcronym2" ).val($("#"+row).find(".ac #projectlinks").html());
+				
+				$( "#ProjectDescription2" ).val($("#"+row).find(".pd .ds").html());
+				
+				var startDate = $("#"+row).find(".pe .start").val().substring(0,10);
+			    var startDateformat = startDate.replace(/-/g, "/");
+			    var startsplit = startDateformat.split('/');
+			   	var newStartFormat = ""+startsplit[2]+"/"+startsplit[1]+"/"+startsplit[0];
+			    
+				$( "#startdatepicker2" ).val(newStartFormat);
+				
+				var endDate = $("#"+row).find(".pe .end").val().substring(0,10);
+			    var endDateformat = endDate.replace(/-/g, "/");
+			    var endsplit = endDateformat.split('/');
+			   	var newendFormat = ""+endsplit[2]+"/"+endsplit[1]+"/"+endsplit[0];
+				$('#enddatepicker2').val(newendFormat);
+			
+			});
+			
+			
+			
+			
 			
 			  $(function() {
 				    $( "#startdatepicker" ).datepicker({
@@ -173,6 +258,34 @@
 				    });
 			 });
 			  
+			  $(function() {
+				    $( "#startdatepicker2" ).datepicker({
+				    	
+				    	dateFormat: "dd/mm/yy",
+				    	showAnim:"slide",
+				    	
+				    	
+				    	onSelect: function(selected) {
+				    	      $("#enddatepicker2").datepicker("option","minDate", selected)
+				    	       }
+				    });
+				  });
+			  $(function() {
+				  
+				    $( "#enddatepicker2" ).datepicker({
+				    	
+
+				    	dateFormat: "dd/mm/yy",
+				    	showAnim:"slide",
+				    	onSelect: function(selected) {
+				    	$("#startdatepicker2").datepicker("option","maxDate", selected)
+				    	
+				    	}
+				    });
+			 });
+			  
+			  
+			  
 			  $('#projectBody tr ').each(function(){		
 					   
 					  showTime($(this).find(" td .end").val(), $(this))
@@ -181,7 +294,7 @@
 					  
 			  );
 			 
-				
+	
 			   function showTime(end, element) {
 				    var today=new Date();	
 				  
@@ -298,9 +411,84 @@
 						
 				   });
 			 });
+			
+			///////////////////////////////////////////Edit/////////////////////////////////////////////////
+			$(function() {
+				  
+			  	var $form = $("#projectForm2");
+				var ProjectName = $( "#ProjectName2" );
+				var ProjectAcronym = $( "#ProjectAcronym2" );
+				var ProjectDescription = $( "#ProjectDescription2" );
+				var StartDate = $( "#startdatepicker2" );
+				var EndDate = $('#enddatepicker2');
+			  
+			    $( "#EditProjectDialog" ).on( "submit", function( event ) {
+			    	/*event.preventDefault();*/
+			    	event.preventDefault();	    
+			    	var id = $("#projectid").val();
+			        var request = $.ajax({ 
+			        	url:"reviewerproject.json",
+			        	type:"POST",
+			        	data:$form.serialize(),	
+			        	success: function(response){
+							if(response.status == "SUCCESS"){
+								
+								addEditedProject(id)
+								 $.ajax({
+										url:"reviewerproject/edit/"+id,
+							        	type:"POST",
+							        	data:$form.serialize(),	
+								         success: function () {
+								        	 
+								          }    
+									});    	
+								$("#EditProjectDialog").dialog("close");
+																	
+							} else{
+								
+								$( "#ProjectNameError2").html("");
+								$( "#ProjectAcronymError2").html("");
+								$( "#ProjectDescriptionError2").html("");
+								$( "#StartDateError2").html("");
+								$( "#EndDateError2").html("");
+								
+								
+									for(i =0 ; i < response.result.length ; i++){
+										
+						                if(response.result[i].field == "projectName"){
+						                	$( "#ProjectNameError2").html("<div class='error' style='float:left'>"+response.result[i].defaultMessage+"</div>");
+						                }
+						                if(response.result[i].field == "projectAcronym"){
+						                	$( "#ProjectAcronymError2").html("<div class='error' style='float:left'>"+response.result[i].defaultMessage+"</div>");
+						                } 
+						                if(response.result[i].field == "projectDescription"){
+						                	$( "#ProjectDescriptionError2").html("<div class='error' style='float:left'>"+response.result[i].defaultMessage+"</div>");
+						                } 
+						                if(response.result[i].field == "startDate"){
+						                	$( "#StartDateError2").html("<div class='error' style='float:left'>"+response.result[i].defaultMessage+"</div>");
+						                } 
+						                if(response.result[i].field == "endDate"){
+						                	$( "#EndDateError2").html("<div class='error' style='float:left'>"+response.result[i].defaultMessage+"</div>");
+						                } 
+					               
+				                	}
+								
+				                }
+									
+							    
+			       		},
+			        });        
+			        
+			        
+			        
+					
+			   });
+		 });
+			
+			
+			
 		});
-		
-		
+				
 	</script>
 	<div id="NewProjectDialog" title="Create New Project">
 	
@@ -314,7 +502,7 @@
 		<tr><td><label>Project Acronym</label></td><td> <form:input path ="ProjectAcronym" id="ProjectAcronym" maxlength="5" class="acronym" style="text-transform: uppercase;"/></td>
 		<tr><td></td><td><div id="ProjectAcronymError"></div></td></tr>
 		
-		<tr><td><label>Project Description</label></td><td><form:textarea  rows="4" cols="50" path="ProjectDescription" id="ProjectDescription" style="width: 95%;color:#666666;margin-bottom:8px;padding:3px;" placeholder="  A brief description of your project (optional)"/></td>
+		<tr><td><label>Project Description</label></td><td><form:textarea  rows="4" cols="60" path="ProjectDescription" id="ProjectDescription" style="width: 95%;color:#666666;margin-bottom:8px;padding:3px;" placeholder="  A brief description of your project (optional)"/></td>
 		<tr><td></td><td><div id="ProjectDescriptionError"></div></td></tr>
 		
 		<tr><td><label>Duration</label></td><td> 
@@ -322,7 +510,7 @@
 		<div>
 						<div style="width:50%;float:left;">
 						<label>Start Date</label>
-						<form:input path ="StartDate" class="timepiece" id="startdatepicker" placeholder="dd/mm/yyyy" />
+						<form:input path ="StartDate" class="timepiece" id="startdatepicker" placeholder="dd/mm/yyyy"/>
 						<div id="StartDateError"></div>
 						</div>
 						<div style="width:50%;float:left;">
@@ -341,94 +529,65 @@
 
 </form:form>
 	
-	
-	
-	
-	
-		
-			<%-- <form method="post" action="${newProjectUrl}">
-				<table align="center" style="padding-top:15px;padding-left:15px;">
-					<tr>
-						<td><label>Project Name</label></td>
-						<td><input type="text" name="ProjectName"/></td>
-					</tr>
-					<tr>
-						<td><label>Project Acronym</label></td>
-						<td><input type="text" name="ProjectAcronym" maxlength="5" class="acronym" style="text-transform: uppercase;"/></td>
-					</tr>
-					<tr>
-						<td><label>Project Description</label></td>
-						<!-- <td><input type="text" name="ProjectDescription" maxlength="3" class="acronym"/></td> -->
-						<td> <textarea rows="4" cols="50" name="ProjectDescription" style="width: 95%;color:#666666;margin-bottom:8px;padding:3px;" placeholder="  A brief description of your project (optional)"></textarea> </td>
-					</tr>
-					<tr>
-						<td><label>Duration</label></td>
-						<td>
-						<div>
-						<div style="width:50%;float:left;">
-						<label>Start Date</label>
-						<input type="text" name="StartDate" class="timepiece" id="startdatepicker" placeholder="dd/mm/yyyy"/>
-						</div>
-						<div style="width:50%;float:left;">
-						<label>End Date</label>
-						<input type="text" name="StartDate" class="timepiece" id="enddatepicker" placeholder="dd/mm/yyyy"/>
-						</div>
-						</div>
-						
-						
-						</td>
-					</tr>
-					<tr>
-					<td>
-						<td/>
-						<td><input type="hidden" name="${_csrf.parameterName}"
-							value="${_csrf.token}" />
-						<td/>
-					<tr/>
-					<tr>
-						<td></td>
-						<td align="right"><input type="submit" value="Create New Project" class="submitNewProject"></td>
-					</tr>
-				</table>
-			</form> --%>
-			
-<%-- <form:form  modelAttribute="project" method="post" action="${newProjectUrl}" >
+</div>	
+
+
+
+
 
 	
+<!-- //////////////////////////////////////Project Edit/////////////////////////////////////////////////////////// -->
+
+
+
+<div id="EditProjectDialog" title="Adjust Project Details">
+	
+	<form:form  modelAttribute="project" method="post" action="${editProjectUrl}" id="projectForm2">
+	
+	
 	<table align="center" style="padding-top:15px;padding-left:15px;">
-		<tr><td><label>Project Name</label></td><td> <form:input path ="ProjectName"/></td></tr>
-		<tr><td></td><td><form:errors path ="ProjectName" cssClass="error"/></td></tr>
+		<tr><td><label>Project Name</label></td><td> <form:input path ="ProjectName" id="ProjectName2"/>		
+		<tr><td></td><td><div id="ProjectNameError2"></div></td></tr>
+				
+		<tr><td><label>Project Acronym</label></td><td> <form:input path ="ProjectAcronym" id="ProjectAcronym2" maxlength="5" class="acronym" style="text-transform: uppercase;"/></td>
+		<tr><td></td><td><div id="ProjectAcronymError2"></div></td></tr>
 		
-		<tr><td><label>Project Acronym</label></td><td> <form:input path ="ProjectAcronym" maxlength="5" class="acronym" style="text-transform: uppercase;"/></td>
-		<tr><td></td><td><form:errors path ="ProjectAcronym" cssClass="error"/></td></tr>
-		
-		<tr><td><label>Project Description</label></td><td><form:textarea  rows="4" cols="50" path="ProjectDescription" style="width: 95%;color:#666666;margin-bottom:8px;padding:3px;" placeholder="  A brief description of your project (optional)"/></td>
-		<tr><td></td><td><form:errors path="ProjectDescription" cssClass="error"/></td></tr>
+		<tr><td><label>Project Description</label></td><td><form:textarea  rows="4" cols="60" path="ProjectDescription" id="ProjectDescription2" style="width: 95%;color:#666666;margin-bottom:8px;padding:3px;" placeholder="  A brief description of your project (optional)"/></td>
+		<tr><td></td><td><div id="ProjectDescriptionError2"></div></td></tr>
 		
 		<tr><td><label>Duration</label></td><td> 
 		
 		<div>
 						<div style="width:50%;float:left;">
 						<label>Start Date</label>
-						<form:input path ="StartDate" class="timepiece" id="startdatepicker" placeholder="dd/mm/yyyy" />
-						<form:errors path ="StartDate" cssClass="error"/>
+						<form:input path ="StartDate" class="timepiece" id="startdatepicker2" placeholder="dd/mm/yyyy"/>
+						<div id="StartDateError2"></div>
 						</div>
 						<div style="width:50%;float:left;">
 						<label>End Date</label>
-						<form:input path ="EndDate" class="timepiece" id="enddatepicker" placeholder="dd/mm/yyyy"/>
-						<form:errors path ="EndDate" cssClass="error"/>
+						<form:input path ="EndDate" class="timepiece" id="enddatepicker2" placeholder="dd/mm/yyyy"/>
+						<div id="EndDateError2"></div>
 						</div>
 		</div>
 		
 		
 		</td></tr>
+		<tr><td><br></td><td><input type="hidden" name="id" id="projectid"/></td></tr>
 		<tr><td><br></td><td><input type="hidden" name="${_csrf.parameterName}"value="${_csrf.token}"/></td></tr>
-		<tr><td></td><td align="right"><input type="submit" value="Create New Project" class="submitNewProject"/></td></tr>	
+		<tr><td></td><td align="right"><input type="submit" value="Adjust Project Details" class="submitNewProject"/></td></tr>	
 	</table>
 
-</form:form> --%>
+</form:form>
+	
+</div>	
+
+
+
+
+
+
 		
-	</div>
+	
 
 
 

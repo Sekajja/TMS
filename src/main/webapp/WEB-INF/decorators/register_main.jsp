@@ -37,7 +37,7 @@
 		
 			<div>
 
-				<div> <font  style="color:#808080;font-family: Impact, Charcoal, sans-serif, Sawasdee;-webkit-font-smoothing:antialiased; font-size:16px;">
+				<div> <font  style="color:#808080;font-family: Century Gothic, Charcoal, sans-serif, Sawasdee;-webkit-font-smoothing:antialiased; font-size:16px;">
 						
 						<decorator:body/>
 							
