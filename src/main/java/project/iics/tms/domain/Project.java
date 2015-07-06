@@ -1,6 +1,7 @@
 package project.iics.tms.domain;
 
 import java.io.Serializable;
+import java.util.Comparator;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -22,7 +23,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 	@NamedQuery(name = "findProjectByProjectName", query = "from Project where projectname like :projectname"
 
 	) })
-public class Project implements Serializable {
+public class Project implements Serializable{
 
 	/**
 	 * 
@@ -114,5 +115,6 @@ public class Project implements Serializable {
 		return "Project [id=" + id + ", ProjectName=" + ProjectName
 				+ ", projectUser=" + projectUser + "]";
 	}
-		
+
+
 }

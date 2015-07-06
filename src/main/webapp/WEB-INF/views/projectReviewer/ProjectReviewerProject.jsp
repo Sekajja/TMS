@@ -14,7 +14,7 @@
 <c:url var="editProjectUrl" value="reviewerproject/edit">
 	
 </c:url>
-<c:url var="deleteProjectUrl" value="reviewerproject/edit">
+<c:url var="deleteProjectUrl" value="reviewerproject/delete">
 	
 </c:url>
 <c:url var="processProjectUrl" value="reviewerproject.json" />
@@ -36,8 +36,10 @@
 <body>
 
 	
+	<div id="alertmsg" class="successmsg" align="center" style="margin-top: 70px;">
+	</div>
 
-	<table class="formbox" width="100%" style="margin-top: 100px;">
+	<table class="formbox" width="100%" style="margin-top: 10px;">
 		<tr>
 			<td>
 				<div id="projects_header">
@@ -106,14 +108,17 @@
 				        
 				        <td><a href="<c:url value='${editProjectUrl}/${projects.key.id}'/>">
 				        
-				        	<img src="<c:url value='/resources/images/icons/edit_icon.png'/>" class="EditProjectDialogOpener" alt="logo" height="18px" width="18px"/>
+				        	<img src="<c:url value='/resources/images/icons/edit_icon.png'/>" class="EditProjectDialogOpener" alt="logo" height="19px" width="19px"/>
 				        
 				        </a></td>
-            			<td><a href="<c:url value='${deleteProjectUrl}/${projects.key.id}' />" >
+            			<td>
+            				<form:form  action="${deleteProjectUrl}/${projects.key.id}" method="post" modelAttribute="project">
+            				<input type="submit" value="" class="deleteSubmit">
+            				<input type="hidden" name="${_csrf.parameterName}"value="${_csrf.token}"/>            					
+            				</form:form>
             				
-            				<img src="<c:url value='/resources/images/icons/delete_icon.png'/>" alt="logo" height="18px" width="18px"/>
             			
-            			</a></td>
+            			</td>
 				      </tr>
 				      <c:set var="start" scope="session" value="${start+=1}"/>
 				      </c:forEach>
@@ -143,8 +148,8 @@
 			var StartDate = $( "#startdatepicker" );
 			var EndDate = $('#enddatepicker');
 			
+			
 			 $('#projectBody tr:last').after("<tr>" +
-					  "<td><input type='checkbox' id='projectChoice'/></td>" +
 				      "<td><a href='#' id='projectlinks'>" + ProjectAcronym.val() + "</a></td>" +
 				      "<td>" + ProjectName.val() + "</td>" +
 				      "<td style='color: #333333;font-size: 90%;-webkit-font-smoothing: antialiased;'><label style='font-weight: bold;'>End Date: </label>" + EndDate.val() + "</td>" +
@@ -153,23 +158,13 @@
 			
 		}
 		
-			function addEditedProject(row){
-			
-			var $form = $("#projectForm2");
-			var ProjectName = $( "#ProjectName2" );
-			var ProjectAcronym = $( "#ProjectAcronym2" );
-			var ProjectDescription = $( "#ProjectDescription2" );
-			var StartDate = $( "#startdatepicker2" );
-			var EndDate = $('#enddatepicker2');
-			 
-			 $("#"+row).find(".ac #projectlinks").html(""+ProjectAcronym.val());
-			 $("#"+row).find(".pn").html(""+ProjectName.val());			 
-			 $("#"+row).find(".pd .ds").html(""+ProjectDescription.val());
-			
-		}
+		
 		
 			
 		$(function() {
+			
+			
+			var timer;
 			
 			$("#NewProjectDialog").dialog({
 				autoOpen : false,
@@ -207,11 +202,13 @@
 				
 				$("#projectid").val(row);
 				
-				$( "#ProjectName2" ).val($("#"+row).find(".pn").html());
+				var projectName = $("#"+row).find(".pn").html();
+				$( "#ProjectName2" ).val(projectName.trim());
+				var projetAcronym = $("#"+row).find(".ac #projectlinks").html();
+				$( "#ProjectAcronym2" ).val(projetAcronym.trim());
 				
-				$( "#ProjectAcronym2" ).val($("#"+row).find(".ac #projectlinks").html());
-				
-				$( "#ProjectDescription2" ).val($("#"+row).find(".pd .ds").html());
+				var desc = $("#"+row).find(".pd .ds").html();
+				$( "#ProjectDescription2" ).val(desc.trim());
 				
 				var startDate = $("#"+row).find(".pe .start").val().substring(0,10);
 			    var startDateformat = startDate.replace(/-/g, "/");
@@ -285,11 +282,111 @@
 			 });
 			  
 			  
+			  	function deleteProject(row){
+			  		
+			  		$("#"+row).find(".deleteSubmit")
+			  		.on( "submit", function( event ) {
+				    	var id = $(this).attr("id");
+				    	
+				    	event.preventDefault();	  
+				    	
+				        var request = $.ajax({ 
+				        	url:"reviewerproject/delete/"+id,
+				        	type:"POST",
+				        	data:$form.serialize(),	
+				        	success: function(){
+				        		
+				        		
+				        		$(this).hide();
+				        	}
+				        	});
+								
+						});  
+			  		
+			  		
+			  		
+			  	}
+			  
+			  
+				function addEditedProject(row){
+					
+					var $form = $("#projectForm2");
+					var ProjectName = $( "#ProjectName2" );
+					var ProjectAcronym = $( "#ProjectAcronym2" );
+					var ProjectDescription = $( "#ProjectDescription2" );
+					var StartDate = $( "#startdatepicker2" );
+					var EndDate = $('#enddatepicker2');
+					 
+					 $("#"+row).find(".ac #projectlinks").html(""+ProjectAcronym.val());
+					 $("#"+row).find(".pn").html(""+ProjectName.val());			 
+					 $("#"+row).find(".pd .ds").html(""+ProjectDescription.val());
+					 
+					 
+					var splitdate = EndDate.val().split("/");
+					var reversedate = ""+splitdate[2]+"-"+splitdate[1]+"-"+splitdate[0];
+					
+					var omega = new Date();
+					var alpha = new Date("1980/01/01");
+					var ide = omega-alpha;
+					
+					
+					$("#"+row).find(".pe").html("");
+					$("#"+row).find(".pe").html("<div id='"+ide+"' style='font-size: 90%;'> </div>");
+					
+					editTime(reversedate,$("#"+row),ide)
+					
+					function editTime(end,rowelement,id){
+							
+						var today=new Date();							  
+					    
+					    var endDate = end.substring(0,10);
+					    var endDateformat = endDate.replace(/-/g, "/");
+					   
+					    var completion = new Date(endDateformat);
+								   
+					    
+					    	 var durationleft = new Date((completion - today));
+					    	 
+					    	 var secondsleft = durationleft/1000;
+					    	 
+					    	 var days = parseInt(secondsleft/86400); 
+					    	 secondsleft = secondsleft % 86400;
+					    	 
+					    	 var hours = parseInt(secondsleft / 3600);
+					    	 secondsleft = secondsleft % 3600;
+					    	   
+					    	 var minutes = parseInt(secondsleft / 60);
+					    	 seconds = parseInt(secondsleft % 60);
+					    	 
+					    	 minutes = checkTime(minutes);
+					    	 seconds = checkTime(seconds);
+					    	 
+					    	 if(secondsleft < 0){
+					    		 
+					    		 rowelement.find(".pe #"+id).html("<b>Out of time</b>");
+					    		 
+					    	 }else{
+					    		
+					    		 rowelement.find(".pe #"+id).html(""+days+"<b>:days</b> &nbsp"+hours+"<b>:hrs</b> &nbsp"+minutes+"<b>:min</b> &nbsp"+seconds+"<b>:s</b>");  
+					    	 }
+					    	 
+					    	 var timer2 = setTimeout(function(){editTime(end,rowelement,id)},500);
+					}
+					
+					$("#alertmsg").addClass("successmsgbg").text("Project Successfully Updated");
+
+					setTimeout(function(){
+						$("#alertmsg").addClass("successmsgbgvanish");
+				    },2000);
+					
+					$("#alertmsg").removeClass("successmsgbgvanish");
+				}
+			  
 			  
 			  $('#projectBody tr ').each(function(){		
 					   
 					  showTime($(this).find(" td .end").val(), $(this))
-					  
+	  
 			  }
 					  
 			  );
@@ -330,8 +427,10 @@
 					    	element.find("td .txt").html(""+days+"<b>:days</b> &nbsp"+hours+"<b>:hrs</b> &nbsp"+minutes+"<b>:min</b> &nbsp"+seconds+"<b>:s</b>");  
 				    	 }
 				    	 
+				    	
+				    	 timer = setTimeout(function(){showTime(end, element)},500);
+						 
 						
-						 var t = setTimeout(function(){showTime(end, element)},500);
 	    
 				 } 
 			   
@@ -374,6 +473,18 @@
 									});    	  
 
 									$("#NewProjectDialog").dialog("close");
+									
+									$("#alertmsg").addClass("successmsgbg").html("Project Successfully Created");
+					
+
+									setTimeout(function(){
+										$("#alertmsg").addClass("successmsgbgvanish");
+								    },2000);
+									
+									$("#alertmsg").removeClass("successmsgbgvanish");
+
+									
+									
 									
 																		
 								} else{	
@@ -446,6 +557,7 @@
 																	
 							} else{
 								
+								$("#alertmsg").html("");
 								$( "#ProjectNameError2").html("");
 								$( "#ProjectAcronymError2").html("");
 								$( "#ProjectDescriptionError2").html("");

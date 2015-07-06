@@ -105,6 +105,36 @@ h1 {
 	font-size: 100%;
 	font-weight: 100;
 }
+.successmsg {
+	padding: 5px;
+	margin-bottom: 20px;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	color: #31708f;
+	
+	font: 300 16px/25px "Ubuntu",Arial,"libra sans",sans-serif,"HelveticaNeue-Light","HelveticaNeue","Roboto","Open Sans"; 
+	/* font-family: Ubuntu,sans-serif; */
+	font-size: 100%;
+	font-weight: 100;
+	
+}
+
+
+.successmsgbg
+{
+	border-color: #bce8f1;
+	background-color: #d9edf7;
+	opacity: 0.9;
+    filter: alpha(opacity=90);
+	
+}
+
+.successmsgbgvanish{
+	opacity: 0.0;
+    filter: alpha(opacity=0);
+    -webkit-transition-duration: 5s; /* Safari */
+    transition-duration: 5s;	
+}
 
 header {
 	color: #ffffff;
@@ -1020,4 +1050,37 @@ font: 300 14px/22px "Ubuntu",Arial,"libra sans",sans-serif,"HelveticaNeue-Light"
 #ProjectNameSelect:hover {
 	
 	border: 1px solid #606060;
+}
+
+.deleteSubmit{
+	
+	background-image: url("cssImages/delete_icon.png");
+	background-repeat:no-repeat;
+	background-size: 18px 18px;
+	background-position: center;
+	background-color:#ffffff;
+	height: 25px;
+	width: 25px;
+	border: none;
+	padding-left: 10px;
+	border-radius: 0px;
+  moz-border-radius: 0px;
+  -webkit-border-radius: 0px;
+cursor:pointer;
+}
+
+.deleteSubmit:hover{
+	cursor:pointer;
+	background-image: url("cssImages/delete_icon.png");
+	background-repeat:no-repeat;
+	background-color:#ffffff;
+	background-size: 18px 18px;
+	background-position: center;
+	height: 25px;
+	width: 25px;
+	border: none;
+	padding-left: 10px;
+	border-radius: 0px;
+  moz-border-radius: 0px;
+  -webkit-border-radius: 0px;
 }

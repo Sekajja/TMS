@@ -1,15 +1,16 @@
 package project.iics.tms.controllers;
 
-import java.util.Date;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
-import org.joda.time.DateTime;
-import org.joda.time.Days;
-import org.joda.time.Hours;
-import org.joda.time.Minutes;
-import org.joda.time.Seconds;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,48 +71,20 @@ public class ProjectController {
 				
 				/////////////////////////////////////////////////////////////////////
 				
-				LinkedHashMap<Project, String> times = new LinkedHashMap<Project, String>(0);
-						
+				HashMap<Project, String> times = new HashMap<Project, String>(0);
+				
 				
 				for(Project projects:projectUserService.getProjectUserProjects(projectUser)){
 					
-					Date dateStop = projects.getEndDate();
-					//Date dateStart = projects.getStartDate();
-										 
+					times.put(projects, projects.getProjectName());	
 					
-				 
-					try {
-										 
-						//DateTime dt1 = new DateTime(dateStart);
-						DateTime dt1 = DateTime.now();
-						DateTime dt2 = new DateTime(dateStop);
-				 
-						String days = Days.daysBetween(dt1, dt2).getDays() + "d  ";
-						String hours = Hours.hoursBetween(dt1, dt2).getHours() % 24 + "H  ";
-						String minutes = Minutes.minutesBetween(dt1, dt2).getMinutes() % 60 + "m  ";
-						String seconds = Seconds.secondsBetween(dt1, dt2).getSeconds() % 60 + "s  ";
-						
-						if(Days.daysBetween(dt1, dt2).getDays()< 1){
-							String timeremaining = "Out of Time";
-							times.put(projects, timeremaining);
-						
-						}else{
-						
-						String timeremaining = days+hours+minutes+seconds;
-						times.put(projects, timeremaining);
-						}
-						
-						
-					 } catch (Exception e) {
-						
-					 }
+					
 				}
 				
 				
-		
 				
 				//////////////////////////////////////////////////////////////////////
-				model.addAttribute("TimeRemaining", times);
+				model.addAttribute("TimeRemaining", sortByValue(times));
 		
 				model.addAttribute("NoProjectsMessage", NoProjectsMessage);
 
@@ -242,9 +215,68 @@ public class ProjectController {
 		
 		
 		projectService.updateProject(project);
-		model.addAttribute("UpdateSuccess","The project was updated Successfully");
+		
+		model.addAttribute("UpdateSuccess",""+project.getProjectName()+" was updated Successfully");
 		model.addAttribute("project", project);
 		return "projectReviewer/ProjectReviewerProject";
+	}
+	
+	/*@RequestMapping(value = "reviewerproject/delete/{id}", method = RequestMethod.GET)
+ 	public String deleteProject(@PathVariable Integer id, Model model){	
+
+		return "redirect:reviewerproject";
+	}*/
+	
+	
+	@RequestMapping(value = "reviewerproject/delete/{id}", method = RequestMethod.POST)
+ 	public String deleteProjectPost(@ModelAttribute Project project, @PathVariable Integer id, Model model, ProjectUser reviewer){	
+		
+	
+		//The Session
+				Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+				String username = "";
+				if (principal instanceof UserDetails) {
+				  username = ((UserDetails)principal).getUsername();
+				  logger.info("New Project Created For:{}", username);
+				} else {
+				  username = principal.toString();
+				  logger.info("[Else Case]New Project Created For logged user:{}", username);
+				}
+				
+				reviewer = projectUserService.getProjectUserByUserName(username).get(0);
+				
+				Project deletedProject =  projectService.getProject(new Long(id));
+				String deletedProjectName = deletedProject.getProjectName();
+				model.addAttribute("deletionSuccess",""+deletedProjectName+" was deleted Successfully");
+				model.addAttribute("reviewer",reviewer);
+				projectService.deleteProject(new Long(id));
+				
+				
+				logger.info(""+deletedProjectName+" was deleted For Project User:{}", reviewer.getFullName());
+		
+				return "redirect:reviewerproject";
+	}
+	
+	
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public static Map sortByValue(Map unsortMap) {	 
+		
+		List list = new LinkedList(unsortMap.entrySet());
+	 
+		Collections.sort(list, new Comparator() {
+			public int compare(Object o1, Object o2) {
+				return ((Comparable) ((Map.Entry) (o1)).getValue())
+							.compareTo(((Map.Entry) (o2)).getValue());
+			}
+		});
+	 
+		Map sortedMap = new LinkedHashMap();
+		for (Iterator it = list.iterator(); it.hasNext();) {
+			Map.Entry entry = (Map.Entry) it.next();
+			sortedMap.put(entry.getKey(), entry.getValue());
+		}
+		return sortedMap;
 	}
 	 
 }
