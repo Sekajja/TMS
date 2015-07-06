@@ -221,11 +221,11 @@ public class ProjectController {
 		return "projectReviewer/ProjectReviewerProject";
 	}
 	
-	/*@RequestMapping(value = "reviewerproject/delete/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "reviewerproject/delete/{id}", method = RequestMethod.GET)
  	public String deleteProject(@PathVariable Integer id, Model model){	
 
 		return "redirect:reviewerproject";
-	}*/
+	}
 	
 	
 	@RequestMapping(value = "reviewerproject/delete/{id}", method = RequestMethod.POST)
