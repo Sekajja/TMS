@@ -774,13 +774,15 @@ nav ul li:hover ul {
 	
 	color: #333333;
 	background-color: #EC6E6E;
-	font-family: Century Gothic, Charcoal, sans-serif, Sawasdee;
 	border-radius: 10px;
 	moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
-	font-family: Century Gothic, Charcoal, sans-serif, Sawasdee;
+	font-weight: 300;
+	font-family: "Ubuntu",Arial,"libra sans",sans-serif,"HelveticaNeue-Light","HelveticaNeue","Roboto","Open Sans";
+	
 	-webkit-font-smoothing: antialiased;
-	font-size: 12px
+	
+	
 
 }
 #NewProjectDialogOpener{
@@ -1083,4 +1085,32 @@ cursor:pointer;
 	border-radius: 0px;
   moz-border-radius: 0px;
   -webkit-border-radius: 0px;
+}
+
+
+
+#dialog-confirm .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+  border: 1px solid #ffffff;
+  background: #FF8E8E;
+  font-weight: 300;
+  color:#ffffff;
+  -webkit-font-smoothing: antialiased;
+  
+}
+
+#dialog-confirm .ui-state-default, .ui-widget-content .ui-state-default:hover, .ui-widget-header .ui-state-default:hover{
+  color: #FF8E8E;
+	background-color: #FFEEEE;
+	border: 1px solid #FF8E8E;
+	-webkit-font-smoothing: antialiased;
+  
+}
+
+.ui-button-icon-primary ui-icon ui-icon-closethick{
+	background-color: #FFFFFF!important;
+}
+
+.ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-dialog-titlebar-close{
+	background-color: #FFFFFF!important;
+	
 }

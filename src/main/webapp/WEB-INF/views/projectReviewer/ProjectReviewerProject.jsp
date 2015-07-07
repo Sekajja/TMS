@@ -112,8 +112,8 @@
 				        
 				        </a></td>
             			<td>
-            				<form:form  action="${deleteProjectUrl}/${projects.key.id}" method="post" modelAttribute="project">
-            				<input type="submit" value="" class="deleteSubmit">
+            				<form:form  action="${deleteProjectUrl}/${projects.key.id}" method="post" modelAttribute="project" id="deleteform">
+            				<input type="button" value="" class="deleteSubmit">
             				<input type="hidden" name="${_csrf.parameterName}"value="${_csrf.token}"/>            					
             				</form:form>
             				
@@ -383,9 +383,74 @@
 				}
 			  
 			  
+				
+				
 			  $('#projectBody tr ').each(function(){		
 					   
-					  showTime($(this).find(" td .end").val(), $(this))
+					  showTime($(this).find(" td .end").val(), $(this));
+					  
+					  var id = $(this).attr("id");
+					  var row = $(this);
+					  var $form = $(this).find("#deleteform");
+					  
+					  
+					  
+					  
+					  
+					  
+					  $(this).find(".deleteSubmit")
+				  		.on( "click", function( event ) {
+				  			event.preventDefault();		
+				  			$("#dialog-confirm").html(" Are you sure you want this project removed?");
+				  			$(function() {
+							    $( "#dialog-confirm" ).dialog({
+							      resizable: false,
+							      height:200,
+							      width:400,
+							      modal: true,
+							    
+							      buttons: {
+							        "Remove Project": function() {
+							        	
+							        	var request = $.ajax({ 
+								        	
+								        	url:"reviewerproject/delete/"+id,
+								        	type:"POST",
+								        	data:$form.serialize(),	
+								        	success: function(){
+								        		row.hide();
+								        		$("#alertmsg").addClass("successmsgbg").text("Project Successfully Removed");
+
+												setTimeout(function(){
+													$("#alertmsg").addClass("successmsgbgvanish");
+											    },2000);
+												
+												$("#alertmsg").removeClass("successmsgbgvanish");
+								        	}
+								        	});
+							        	
+							        	
+							          $( this ).dialog( "close" );
+							        },
+							        Cancel: function() {
+							          $( this ).dialog( "close" );
+							        }
+							      }
+							    });
+							  });
+				  			
+							   
+							 
+				  			
+				  		
+				  			
+				  			
+				  			
+				  			
+					    
+									
+							});  
+					  
 	  
 			  }
 					  
@@ -602,6 +667,8 @@
 		});
 				
 	</script>
+	
+
 	<div id="NewProjectDialog" title="Create New Project">
 	
 	<form:form  modelAttribute="project" method="post" action="${newProjectUrl}" id="projectForm">
@@ -694,7 +761,8 @@
 </div>	
 
 
-
+<div id="dialog-confirm" title="Remove Project?"style="	font: 200 18px/28px 'Ubuntu',Arial,'libra sans',sans-serif,'HelveticaNeue-Light','HelveticaNeue','Roboto','Open Sans';
+"></div>
 
 
 

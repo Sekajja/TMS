@@ -223,8 +223,8 @@ public class ProjectController {
 	
 	@RequestMapping(value = "reviewerproject/delete/{id}", method = RequestMethod.GET)
  	public String deleteProject(@PathVariable Integer id, Model model){	
-
-		return "redirect:reviewerproject";
+		
+		return "redirect:/reviewerproject";
 	}
 	
 	
@@ -254,7 +254,7 @@ public class ProjectController {
 				
 				logger.info(""+deletedProjectName+" was deleted For Project User:{}", reviewer.getFullName());
 		
-				return "redirect:reviewerproject";
+				return "redirect:/reviewerproject";
 	}
 	
 	
