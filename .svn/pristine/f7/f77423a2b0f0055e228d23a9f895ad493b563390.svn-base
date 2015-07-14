@@ -1,0 +1,36 @@
+@CHARSET "UTF-8";
+
+header{
+	color: #ffffff;
+	background-color: #333333;
+	background-position: center; 
+		
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	
+}
+
+
+footer{
+	
+	color: #ffffff;
+	background-color: #333333;
+	background-position: center; 
+	width: 100%;
+		
+	position: absolute;
+	
+	left: 0px;
+	right: 0px;
+	bottom: 0px
+}
+
+.pageheader{
+	font-family: Impact, Charcoal, sans-serif, Sawasdee;
+	text-align: center;
+	font-size:75%;
+	font-weight:100;
+	-webkit-font-smoothing:antialiased;	
+}
